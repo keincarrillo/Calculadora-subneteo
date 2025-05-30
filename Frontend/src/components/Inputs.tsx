@@ -1,3 +1,4 @@
+import consultarApi from "../services/api";
 import { useForm } from "react-hook-form";
 import type { FormData } from "../types/formValues";
 
@@ -8,10 +9,16 @@ const IPForm = () => {
     formState: { errors },
   } = useForm<FormData>();
 
-  const onSubmit = (data: FormData) => {
-    console.log(data);
-    // Aquí llamarías a tu API con fetch o axios
+  const onSubmit = async (data: FormData) => {
+    try {
+      const resultado = await consultarApi("api/subnet", data, "POST");
+      console.log("Subredes generadas:", resultado);
+      // Aquí puedes actualizar el estado para mostrar resultados
+    } catch (error) {
+      console.error("Error al consultar la API:", error);
+    }
   };
+
 
   return (
     <form
@@ -19,6 +26,7 @@ const IPForm = () => {
       className="max-w-md mx-auto mt-10 p-6 bg-white rounded shadow space-y-6 animate-fadeIn"
     >
       <div className="animate-slideInUp">
+        {/* Input 1 */}
         <label htmlFor="ip" className="block font-semibold mb-1">
           Dirección IP
         </label>
@@ -37,7 +45,7 @@ const IPForm = () => {
               ? "border-red-500 ring-red-300 animate-shake"
               : "border-gray-300 ring-blue-300"
           }`}
-          placeholder="192.168.0.1"
+          placeholder="Ej: 192.168.0.1"
         />
         {errors.ip && (
           <p className="text-red-600 text-sm mt-1">{errors.ip.message}</p>
@@ -45,6 +53,7 @@ const IPForm = () => {
       </div>
 
       <div className="animate-slideInUp delay-100">
+        {/* Input 2 */}
         <label htmlFor="mascara" className="block font-semibold mb-1">
           Máscara (bits)
         </label>
@@ -61,7 +70,7 @@ const IPForm = () => {
               ? "border-red-500 ring-red-300 animate-shake"
               : "border-gray-300 ring-blue-300"
           }`}
-          placeholder="24"
+          placeholder="Ej: 24"
         />
         {errors.mascara && (
           <p className="text-red-600 text-sm mt-1">{errors.mascara.message}</p>
@@ -69,6 +78,7 @@ const IPForm = () => {
       </div>
 
       <div className="animate-slideInUp delay-200">
+        {/* Input 3 */}
         <label htmlFor="mascaraNueva" className="block font-semibold mb-1">
           Máscara Nueva (bits)
         </label>
@@ -76,7 +86,6 @@ const IPForm = () => {
           id="mascaraNueva"
           type="number"
           {...register("mascaraNueva", {
-            required: "Máscara Nueva es requerida",
             min: { value: 0, message: "Debe ser mínimo 0" },
             max: { value: 32, message: "Debe ser máximo 32" },
           })}
@@ -85,7 +94,7 @@ const IPForm = () => {
               ? "border-red-500 ring-red-300 animate-shake"
               : "border-gray-300 ring-blue-300"
           }`}
-          placeholder="25"
+          placeholder="Opcional"
         />
         {errors.mascaraNueva && (
           <p className="text-red-600 text-sm mt-1">
