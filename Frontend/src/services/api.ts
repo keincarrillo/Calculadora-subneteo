@@ -1,11 +1,27 @@
-const consultarApi = async (ruta: string, datos?: any, metodo: "GET" | "POST" = "GET") => {
+import type { FormData } from "../types/formValues";
+
+const consultarApi = async (
+  ruta: string,
+  datos?: FormData,
+  metodo: "GET" | "POST" = "GET"
+) => {
+  // Validar que los POST incluyan datos
+  if (metodo === "POST" && !datos) {
+    throw new Error("No se proporcionaron datos para la solicitud POST");
+  }
+
+  // Headers configurados solo si es POST
+  const headers: HeadersInit = {};
+  if (metodo === "POST") {
+    headers["Content-Type"] = "application/json";
+  }
+
   const config: RequestInit = {
     method: metodo,
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers,
   };
 
+  // Incluir body si es POST con datos
   if (metodo === "POST" && datos) {
     config.body = JSON.stringify(datos);
   }

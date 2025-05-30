@@ -12,8 +12,8 @@ const IPForm = () => {
   const onSubmit = async (data: FormData) => {
     try {
       const resultado = await consultarApi("api/subnet", data, "POST");
+
       console.log("Subredes generadas:", resultado);
-      // Aquí puedes actualizar el estado para mostrar resultados
     } catch (error) {
       console.error("Error al consultar la API:", error);
     }
@@ -72,7 +72,9 @@ const IPForm = () => {
           placeholder="Ej: 24"
         />
         {errors.mascara ? (
-          <p className="text-red-600 text-xs mt-1 h-4">{errors.mascara.message}</p>
+          <p className="text-red-600 text-xs mt-1 h-4">
+            {errors.mascara.message}
+          </p>
         ) : (
           <p className="invisible text-xs mt-1 h-4">Error placeholder</p>
         )}
@@ -100,7 +102,9 @@ const IPForm = () => {
           placeholder="Opcional"
         />
         {errors.mascaraNueva ? (
-          <p className="text-red-600 text-xs mt-1 h-4">{errors.mascaraNueva.message}</p>
+          <p className="text-red-600 text-xs mt-1 h-4">
+            {errors.mascaraNueva.message}
+          </p>
         ) : (
           <p className="invisible text-xs mt-1 h-4">Error placeholder</p>
         )}
