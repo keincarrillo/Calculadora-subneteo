@@ -22,61 +22,63 @@ const ResultadosRed = () => {
     broadcastBinario: "11000000.10101000.00000001.11111111",
   };
 
+  const headerClass = "text-center text-sm font-semibold mb-4";
+  const rowClass = "grid grid-cols-[10rem_1fr_1fr] gap-4 items-start text-xs py-1";
+  const labelClass = "font-semibold text-right";
+  const valueClass = "text-left whitespace-nowrap";
+  const monoClass = "font-mono text-left";
+
   return (
-    <div className="max-w-max mx-auto p-4 border border-blue-600 rounded-md bg-white text-gray-900 font-sans animate-pop">
-      <h3 className="text-center text-sm font-semibold mb-4">
-        Resultados de la Red
-      </h3>
-      <table className="w-full text-gray-900 border-collapse text-xs leading-snug text-xs">
-        <tbody>
-          <tr>
-            <td className="py-0.5 font-semibold align-top w-28">IP:</td>
-            <td className="align-top pr-6">{datos.ip}</td>
-            <td className="font-mono align-top">{datos.ipBinario}</td>
-          </tr>
-          <tr>
-            <td className="py-0.5 font-semibold align-top w-28">
-              MÁSCARA DE RED: <br /> {datos.mascara} = {datos.mascaraBits}
-            </td>
-            <td></td>
-            <td className="font-mono align-top">{datos.mascaraBinario}</td>
-          </tr>
-          <tr>
-            <td className="py-0.5 font-semibold align-top w-28">
-              BITS PARA REDES: <br /> {datos.bitsRedesDecimal} = {datos.bitsRedes}
-            </td>
-            <td></td>
-            <td className="font-mono align-top">{datos.bitsRedesBinario}</td>
-          </tr>
-          <tr>
-            <td className="py-0.5 font-semibold align-top w-28">RED: {datos.red}</td>
-            <td></td>
-            <td className="font-mono align-top">{datos.redBinario}</td>
-          </tr>
-          <tr>
-            <td className="py-0.5 font-semibold align-top w-28">HOST MÍNIMO: {datos.hostMinimo}</td>
-            <td></td>
-            <td className="font-mono align-top">{datos.hostMinimoBinario}</td>
-          </tr>
-          <tr>
-            <td className="py-0.5 font-semibold align-top w-28t">HOST MÁXIMO: {datos.hostMaximo}</td>
-            <td></td>
-            <td className="font-mono align-top">{datos.hostMaximoBinario}</td>
-          </tr>
-          <tr>
-            <td className="py-0.5 font-semibold align-top w-28">BROADCAST: {datos.broadcast}</td>
-            <td></td>
-            <td className="font-mono align-top">{datos.broadcastBinario}</td>
-          </tr>
-          <tr>
-            <td className="py-0.5 font-bold align-top w-28">TOTAL DE HOSTS EN LA RED: {datos.totalHosts}</td>
-            <td></td>
-            <td className="align-top text-sm">
-              {datos.clase} {datos.tipoRed}
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div className="max-w-xl mx-auto p-4 border border-blue-600 rounded-md bg-white text-gray-900 font-sans animate-pop">
+      <h3 className={headerClass}>Resultados de la Red</h3>
+
+      <div className={rowClass}>
+        <div className={labelClass}>IP:</div>
+        <div className={valueClass}>{datos.ip}</div>
+        <div className={monoClass}>{datos.ipBinario}</div>
+      </div>
+
+      <div className={rowClass}>
+        <div className={labelClass}>MÁSCARA DE RED:</div>
+        <div className={valueClass}>{datos.mascara} = {datos.mascaraBits}</div>
+        <div className={monoClass}>{datos.mascaraBinario}</div>
+      </div>
+
+      <div className={rowClass}>
+        <div className={labelClass}>BITS PARA REDES:</div>
+        <div className={valueClass}>{datos.bitsRedesDecimal} = {datos.bitsRedes}</div>
+        <div className={monoClass}>{datos.bitsRedesBinario}</div>
+      </div>
+
+      <div className={rowClass}>
+        <div className={labelClass}>RED:</div>
+        <div className={valueClass}>{datos.red}</div>
+        <div className={monoClass}>{datos.redBinario}</div>
+      </div>
+
+      <div className={rowClass}>
+        <div className={labelClass}>HOST MÍNIMO:</div>
+        <div className={valueClass}>{datos.hostMinimo}</div>
+        <div className={monoClass}>{datos.hostMinimoBinario}</div>
+      </div>
+
+      <div className={rowClass}>
+        <div className={labelClass}>HOST MÁXIMO:</div>
+        <div className={valueClass}>{datos.hostMaximo}</div>
+        <div className={monoClass}>{datos.hostMaximoBinario}</div>
+      </div>
+
+      <div className={rowClass}>
+        <div className={labelClass}>BROADCAST:</div>
+        <div className={valueClass}>{datos.broadcast}</div>
+        <div className={monoClass}>{datos.broadcastBinario}</div>
+      </div>
+
+      <div className={`${rowClass} font-bold`}>
+        <div className={labelClass}>TOTAL DE HOSTS EN LA RED:</div>
+        <div className={valueClass}>{datos.totalHosts}</div>
+        <div className="text-left text-sm font-semibold">{datos.clase} {datos.tipoRed}</div>
+      </div>
     </div>
   );
 };
