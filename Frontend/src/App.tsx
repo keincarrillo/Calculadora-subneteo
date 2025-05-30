@@ -1,14 +1,16 @@
 import Inputs from "./components/Inputs";
-// import consultarApi from "./services/api";
-// const data = await consultarApi("/");
-// console.log(data);
+import ResultadosRed from "./components/ResultRed";
 
 const App = () => {
   return (
     <>
       <h1 className="text-center text-3xl py-5">Calculadora Subneteo</h1>
       <div className="grid grid-cols-2">
-        <Inputs />
+        <div className="max-w-full mx-auto flex flex-col gap-6 px-4">
+          <Inputs />
+          <ResultadosRed />
+        </div>
+        
       </div>
     </>
   );

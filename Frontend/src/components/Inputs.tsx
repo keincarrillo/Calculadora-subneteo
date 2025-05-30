@@ -19,15 +19,13 @@ const IPForm = () => {
     }
   };
 
-
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="max-w-md mx-auto mt-10 p-6 bg-white rounded shadow space-y-6 animate-fadeIn"
+      className="max-w-full mx-auto mt-10 p-6 bg-white rounded shadow flex flex-row items-center space-x-6 animate-fadeIn"
     >
-      <div className="animate-slideInUp">
-        {/* Input 1 */}
-        <label htmlFor="ip" className="block font-semibold mb-1">
+      <div className="flex flex-col w-40 animate-slideInUp">
+        <label htmlFor="ip" className="font-semibold mb-2 text-center">
           Dirección IP
         </label>
         <input
@@ -47,14 +45,15 @@ const IPForm = () => {
           }`}
           placeholder="Ej: 192.168.0.1"
         />
-        {errors.ip && (
-          <p className="text-red-600 text-sm mt-1">{errors.ip.message}</p>
+        {errors.ip ? (
+          <p className="text-red-600 text-xs mt-1 h-4">{errors.ip.message}</p>
+        ) : (
+          <p className="invisible text-xs mt-1 h-4">Error placeholder</p>
         )}
       </div>
 
-      <div className="animate-slideInUp delay-100">
-        {/* Input 2 */}
-        <label htmlFor="mascara" className="block font-semibold mb-1">
+      <div className="flex flex-col w-40 animate-slideInUp delay-100">
+        <label htmlFor="mascara" className="font-semibold mb-2 text-center">
           Máscara (bits)
         </label>
         <input
@@ -72,14 +71,18 @@ const IPForm = () => {
           }`}
           placeholder="Ej: 24"
         />
-        {errors.mascara && (
-          <p className="text-red-600 text-sm mt-1">{errors.mascara.message}</p>
+        {errors.mascara ? (
+          <p className="text-red-600 text-xs mt-1 h-4">{errors.mascara.message}</p>
+        ) : (
+          <p className="invisible text-xs mt-1 h-4">Error placeholder</p>
         )}
       </div>
 
-      <div className="animate-slideInUp delay-200">
-        {/* Input 3 */}
-        <label htmlFor="mascaraNueva" className="block font-semibold mb-1">
+      <div className="flex flex-col w-40 animate-slideInUp delay-200 min-h-[5rem]">
+        <label
+          htmlFor="mascaraNueva"
+          className="font-semibold mb-1 text-center whitespace-normal"
+        >
           Máscara Nueva (bits)
         </label>
         <input
@@ -96,16 +99,16 @@ const IPForm = () => {
           }`}
           placeholder="Opcional"
         />
-        {errors.mascaraNueva && (
-          <p className="text-red-600 text-sm mt-1">
-            {errors.mascaraNueva.message}
-          </p>
+        {errors.mascaraNueva ? (
+          <p className="text-red-600 text-xs mt-1 h-4">{errors.mascaraNueva.message}</p>
+        ) : (
+          <p className="invisible text-xs mt-1 h-4">Error placeholder</p>
         )}
       </div>
 
       <button
         type="submit"
-        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded transition transform hover:scale-105 active:scale-95 animate-bounce"
+        className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded transition transform hover:scale-105 active:scale-95 animate-bounce self-center"
       >
         Calcular
       </button>
