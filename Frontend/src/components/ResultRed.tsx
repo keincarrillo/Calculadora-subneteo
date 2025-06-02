@@ -1,29 +1,9 @@
-const ResultadosRed = () => {
-  const datos = {
-    ip: "192.168.1.0",
-    mascara: "255.255.254.0",
-    mascaraBits: 23,
-    bitsRedesDecimal: "0.0.1.255",
-    bitsRedes: 9,
-    red: "192.168.0.0/23",
-    hostMinimo: "192.168.0.1",
-    hostMaximo: "192.168.1.254",
-    broadcast: "192.168.1.255",
-    totalHosts: 510,
-    clase: "CLASE C",
-    tipoRed: "RED PRIVADA",
+import type { PropsR } from "../types/resultRed";
 
-    ipBinario: "11000000.10101000.00000001.00000000",
-    mascaraBinario: "11111111.11111111.11111110.00000000",
-    bitsRedesBinario: "00000000.00000000.00000001.11111111",
-    redBinario: "11000000.10101000.00000000.00000000",
-    hostMinimoBinario: "11000000.10101000.00000000.00000001",
-    hostMaximoBinario: "11000000.10101000.00000001.11111110",
-    broadcastBinario: "11000000.10101000.00000001.11111111",
-  };
-
+const ResultadosRed = ({ datos }: PropsR) => {
   const headerClass = "text-center text-sm font-semibold mb-4";
-  const rowClass = "grid grid-cols-[10rem_1fr_1fr] gap-4 items-start text-xs py-1";
+  const rowClass =
+    "grid grid-cols-[10rem_1fr_1fr] gap-4 items-start text-xs py-1";
   const labelClass = "font-semibold text-right";
   const valueClass = "text-left whitespace-nowrap";
   const monoClass = "font-mono text-left";
@@ -40,13 +20,17 @@ const ResultadosRed = () => {
 
       <div className={rowClass}>
         <div className={labelClass}>MÁSCARA DE RED:</div>
-        <div className={valueClass}>{datos.mascara} = {datos.mascaraBits}</div>
+        <div className={valueClass}>
+          {datos.mascara} = {datos.mascaraBits}
+        </div>
         <div className={monoClass}>{datos.mascaraBinario}</div>
       </div>
 
       <div className={rowClass}>
         <div className={labelClass}>BITS PARA REDES:</div>
-        <div className={valueClass}>{datos.bitsRedesDecimal} = {datos.bitsRedes}</div>
+        <div className={valueClass}>
+          {datos.bitsRedesDecimal} = {datos.bitsRedes}
+        </div>
         <div className={monoClass}>{datos.bitsRedesBinario}</div>
       </div>
 
@@ -77,7 +61,9 @@ const ResultadosRed = () => {
       <div className={`${rowClass} font-bold`}>
         <div className={labelClass}>TOTAL DE HOSTS EN LA RED:</div>
         <div className={valueClass}>{datos.totalHosts}</div>
-        <div className="text-left text-sm font-semibold">{datos.clase} {datos.tipoRed}</div>
+        <div className="text-left text-sm font-semibold">
+          {datos.clase} {datos.tipoRed}
+        </div>
       </div>
     </div>
   );

@@ -1,8 +1,9 @@
 import consultarApi from "../services/api";
 import { useForm } from "react-hook-form";
 import type { FormData } from "../types/formValues";
+import type { PropsI } from "../types/resultRed";
 
-const IPForm = () => {
+const IPForm = ({ onResultado }: PropsI) => {
   const {
     register,
     handleSubmit,
@@ -12,8 +13,7 @@ const IPForm = () => {
   const onSubmit = async (data: FormData) => {
     try {
       const resultado = await consultarApi("api/subnet", data, "POST");
-
-      console.log("Subredes generadas:", resultado);
+      onResultado(resultado);
     } catch (error) {
       console.error("Error al consultar la API:", error);
     }

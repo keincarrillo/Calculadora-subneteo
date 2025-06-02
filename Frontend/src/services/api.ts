@@ -16,16 +16,14 @@ const consultarApi = async (
 
   if (metodo === "POST" && datos) {
     config.body = JSON.stringify(datos);
-    console.log("Body enviado:", config.body);
   }
 
   const url = `http://localhost:3000/${ruta}`;
-  console.log("URL solicitada:", url);
 
   const res = await fetch(url, config);
 
   if (!res.ok) {
-    const errorText = await res.text(); // Muestra más detalle del error
+    const errorText = await res.text();
     console.error("Respuesta del servidor:", errorText);
     throw new Error("Error al consultar la API");
   }
