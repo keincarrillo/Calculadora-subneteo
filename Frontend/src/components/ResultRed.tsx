@@ -27,11 +27,11 @@ const ResultadosRed = ({ datos }: PropsR) => {
       </div>
 
       <div className={rowClass}>
-        <div className={labelClass}>BITS PARA REDES:</div>
+        <div className={labelClass}>BITS PARA HOST:</div>
         <div className={valueClass}>
-          {datos.bitsRedesDecimal} = {datos.bitsRedes}
+          {datos.bitsHostDecimal} = {datos.bitsHost}
         </div>
-        <div className={monoClass}>{datos.bitsRedesBinario}</div>
+        <div className={monoClass}>{datos.bitsHostBinario}</div>
       </div>
 
       <div className={rowClass}>

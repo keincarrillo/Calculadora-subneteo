@@ -2,8 +2,8 @@ export type resultRed = {
   ip: string;
   mascara: string;
   mascaraBits: number;
-  bitsRedesDecimal: string;
-  bitsRedes: number;
+  bitsHostDecimal: string;
+  bitsHost: number;
   red: string;
   hostMinimo: string;
   hostMaximo: string;
@@ -14,7 +14,7 @@ export type resultRed = {
 
   ipBinario: string;
   mascaraBinario: string;
-  bitsRedesBinario: string;
+  bitsHostBinario: string;
   redBinario: string;
   hostMinimoBinario: string;
   hostMaximoBinario: string;

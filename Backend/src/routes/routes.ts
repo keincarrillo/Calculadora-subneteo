@@ -14,17 +14,14 @@ router.get("/", (req: Request, res: Response) => {
 router.post("/api/subnet", (req: any, res: any) => {
   let { ip, mascara, mascaraNueva } = req.body as SubnetRequest;
 
-  // Parseo explícito
   const mascaraNum = Number(mascara);
+
   const mascaraNuevaNum =
     mascaraNueva !== undefined ? Number(mascaraNueva) : undefined;
-
-  // Validación
   if (!ip || isNaN(mascaraNum)) {
     return res.status(400).json({ error: "Faltan datos requeridos" });
   }
 
-  // Usar los datos ya parseados
   const resultado = calcularSubneteo(ip, mascaraNum, mascaraNuevaNum);
 
   return res.json(resultado);

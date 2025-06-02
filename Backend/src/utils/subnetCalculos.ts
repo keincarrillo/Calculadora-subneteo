@@ -4,8 +4,12 @@ export interface ResultadoSubneteo {
   ip: string;
   mascara: string;
   mascaraBits: number;
-  bitsRedesDecimal: string;
+  bitsHost: number;
+  bitsHostDecimal: string;
+  bitsHostBinario: string;
   bitsRedes: number;
+  bitsRedesDecimal: string;
+  bitsRedesBinario: string;
   red: string;
   hostMinimo: string;
   hostMaximo: string;
@@ -15,14 +19,13 @@ export interface ResultadoSubneteo {
   tipoRed: string;
   ipBinario: string;
   mascaraBinario: string;
-  bitsRedesBinario: string;
   redBinario: string;
   hostMinimoBinario: string;
   hostMaximoBinario: string;
   broadcastBinario: string;
 }
 
-export function toBinaryIP(ipStr: string) {
+export function toBinaryIP(ipStr: string): string {
   return ipStr
     .split(".")
     .map((octet) => Number(octet).toString(2).padStart(8, "0"))
@@ -41,27 +44,58 @@ export function esRedPrivada(ipStr: string): string {
   return ip.isPrivate(ipStr) ? "RED PRIVADA" : "RED PÚBLICA";
 }
 
+function calcularBitsBinarios(bits: number): {
+  decimal: string;
+  binario: string;
+} {
+  const value = 2 ** bits - 1;
+  const octets = [
+    (value >>> 24) & 0xff,
+    (value >>> 16) & 0xff,
+    (value >>> 8) & 0xff,
+    value & 0xff,
+  ];
+  return {
+    decimal: octets.join("."),
+    binario: octets.map((n) => n.toString(2).padStart(8, "0")).join("."),
+  };
+}
+
 export function calcularSubneteo(
   ipStr: string,
   mascaraBits: number,
   mascaraNuevaBits?: number
 ): ResultadoSubneteo {
   const mascaraDecimal = ip.fromPrefixLen(mascaraBits);
+  const subnetInfo = ip.cidrSubnet(`${ipStr}/${mascaraBits}`);
 
+  // Bits de host (32 - máscara original)
+  const bitsHost = 32 - mascaraBits;
+  const { decimal: bitsHostDecimal, binario: bitsHostBinario } =
+    calcularBitsBinarios(bitsHost);
+
+  // Bits para subredes (si hay máscara nueva)
   let bitsRedes = 0;
+  let bitsRedesDecimal = "0.0.0.0";
+  let bitsRedesBinario = "00000000.00000000.00000000.00000000";
+
   if (mascaraNuevaBits && mascaraNuevaBits > mascaraBits) {
     bitsRedes = mascaraNuevaBits - mascaraBits;
+    const { decimal, binario } = calcularBitsBinarios(bitsRedes);
+    bitsRedesDecimal = decimal;
+    bitsRedesBinario = binario;
   }
-  const bitsRedesDecimal = bitsRedes > 0 ? `0.0.0.${2 ** bitsRedes - 1}` : "0.0.0.0";
-
-  const subnetInfo = ip.subnet(ipStr, mascaraDecimal);
 
   return {
     ip: ipStr,
     mascara: mascaraDecimal,
     mascaraBits,
-    bitsRedesDecimal,
+    bitsHost,
+    bitsHostDecimal,
+    bitsHostBinario,
     bitsRedes,
+    bitsRedesDecimal,
+    bitsRedesBinario,
     red: `${subnetInfo.networkAddress}/${mascaraBits}`,
     hostMinimo: subnetInfo.firstAddress,
     hostMaximo: subnetInfo.lastAddress,
@@ -69,10 +103,8 @@ export function calcularSubneteo(
     totalHosts: subnetInfo.numHosts,
     clase: calcularClase(ipStr),
     tipoRed: esRedPrivada(ipStr),
-
     ipBinario: toBinaryIP(ipStr),
     mascaraBinario: toBinaryIP(mascaraDecimal),
-    bitsRedesBinario: toBinaryIP(bitsRedesDecimal),
     redBinario: toBinaryIP(subnetInfo.networkAddress),
     hostMinimoBinario: toBinaryIP(subnetInfo.firstAddress),
     hostMaximoBinario: toBinaryIP(subnetInfo.lastAddress),

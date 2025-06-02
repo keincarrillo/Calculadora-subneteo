@@ -18,7 +18,7 @@ const consultarApi = async (
     config.body = JSON.stringify(datos);
   }
 
-  const url = `http://localhost:3000/${ruta}`;
+  const url = `http://localhost:3001/${ruta}`;
 
   const res = await fetch(url, config);
 
@@ -29,6 +29,7 @@ const consultarApi = async (
   }
 
   const resultado = await res.json();
+  console.log(resultado);
   return resultado;
 };
 
