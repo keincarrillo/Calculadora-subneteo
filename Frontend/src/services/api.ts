@@ -5,30 +5,28 @@ const consultarApi = async (
   datos?: FormData,
   metodo: "GET" | "POST" = "GET"
 ) => {
-  // Validar que los POST incluyan datos
-  if (metodo === "POST" && !datos) {
-    throw new Error("No se proporcionaron datos para la solicitud POST");
-  }
-
-  // Headers configurados solo si es POST
-  const headers: HeadersInit = {};
-  if (metodo === "POST") {
-    headers["Content-Type"] = "application/json";
-  }
+  const headers: HeadersInit = {
+    "Content-Type": "application/json",
+  };
 
   const config: RequestInit = {
     method: metodo,
     headers,
   };
 
-  // Incluir body si es POST con datos
   if (metodo === "POST" && datos) {
     config.body = JSON.stringify(datos);
+    console.log("Body enviado:", config.body);
   }
 
-  const res = await fetch(`http://localhost:3000/${ruta}`, config);
+  const url = `http://localhost:3000/${ruta}`;
+  console.log("URL solicitada:", url);
+
+  const res = await fetch(url, config);
 
   if (!res.ok) {
+    const errorText = await res.text(); // Muestra más detalle del error
+    console.error("Respuesta del servidor:", errorText);
     throw new Error("Error al consultar la API");
   }
 

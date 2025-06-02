@@ -1,5 +1,6 @@
 import { Router } from "express";
 import type { Request, Response } from "express";
+import type { SubnetRequest } from "../types/subnetTypes";
 import { calcularSubneteo } from "../utils/subnetCalculos";
 
 const router = Router();
@@ -10,20 +11,21 @@ router.get("/", (req: Request, res: Response) => {
   });
 });
 
-type SubnetRequest = {
-  ip: string;
-  mascara: number;
-  mascaraNueva?: number;
-};
-
 router.post("/api/subnet", (req: any, res: any) => {
-  const { ip, mascara, mascaraNueva } = req.body as SubnetRequest;
+  let { ip, mascara, mascaraNueva } = req.body as SubnetRequest;
 
-  if (!ip || typeof mascara !== "number") {
+  // Parseo explícito
+  const mascaraNum = Number(mascara);
+  const mascaraNuevaNum =
+    mascaraNueva !== undefined ? Number(mascaraNueva) : undefined;
+
+  // Validación
+  if (!ip || isNaN(mascaraNum)) {
     return res.status(400).json({ error: "Faltan datos requeridos" });
   }
 
-  const resultado = calcularSubneteo(ip, mascara, mascaraNueva);
+  // Usar los datos ya parseados
+  const resultado = calcularSubneteo(ip, mascaraNum, mascaraNuevaNum);
 
   return res.json(resultado);
 });
