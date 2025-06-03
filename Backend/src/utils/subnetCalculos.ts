@@ -7,23 +7,25 @@ import {
   esRedPrivada,
 } from "./ipConversiones";
 
+const BITS_IP = 32;
+
 export function calcularSubneteo(
   ipStr: string,
   mascaraBits: number,
   mascaraNuevaBits?: number
 ): ResultadoSubneteo {
-  const mascaraFinalBits = mascaraNuevaBits ?? mascaraBits;
-  const mascaraDecimal = ip.fromPrefixLen(mascaraBits);
+  const mascaraFinalBits = mascaraNuevaBits ?? mascaraBits; // Asigna mascaraNuevaBits si existe, de lo contrario, usa mascaraBits
+  const mascaraDecimal = ip.fromPrefixLen(mascaraBits); // Devuelve la mascara en formato de ip
   const nuevaMascaraDecimal = ip.fromPrefixLen(mascaraFinalBits);
-  const subnetInfo = ip.cidrSubnet(`${ipStr}/${mascaraFinalBits}`);
+  const subnetInfo = ip.cidrSubnet(`${ipStr}/${mascaraFinalBits}`); // Pasa la ip y la mascara a la función cidrSubnet
 
   // Bits para host de la red original
-  const bitsHostOriginal = 32 - mascaraBits;
+  const bitsHostOriginal = BITS_IP - mascaraBits;
   const { decimal: bitsHostOriginalDecimal, binario: bitsHostOriginalBinario } =
     calcularBitsBinarios(bitsHostOriginal);
 
   // Bits para host en la subred
-  const bitsHostSubred = 32 - mascaraFinalBits;
+  const bitsHostSubred = BITS_IP - mascaraFinalBits;
   const { decimal: bitsHostSubredDecimal, binario: bitsHostSubredBinario } =
     calcularBitsBinarios(bitsHostSubred);
 
