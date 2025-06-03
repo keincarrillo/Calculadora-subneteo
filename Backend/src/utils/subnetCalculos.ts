@@ -1,41 +1,5 @@
 import ip from "ip";
-
-export interface ResultadoSubneteo {
-  ip: string;
-  mascara: string;
-  mascaraBits: number;
-
-  bitsHostOriginal: number;
-  bitsHostOriginalDecimal: string;
-  bitsHostOriginalBinario: string;
-
-  bitsHostSubred: number;
-  bitsHostSubredDecimal: string;
-  bitsHostSubredBinario: string;
-
-  bitsRedes: number;
-  bitsRedesDecimal: string;
-  bitsRedesBinario: string;
-
-  nuevaMascaraBits: number;
-  nuevaMascaraDecimal: string;
-  nuevaMascaraBinario: string;
-
-  red: string;
-  hostMinimo: string;
-  hostMaximo: string;
-  broadcast: string;
-  totalHosts: number;
-  clase: string;
-  tipoRed: string;
-
-  ipBinario: string;
-  mascaraBinario: string;
-  redBinario: string;
-  hostMinimoBinario: string;
-  hostMaximoBinario: string;
-  broadcastBinario: string;
-}
+import type { ResultadoSubneteo } from "../types/subnetTypes";
 
 export function toBinaryIP(ipStr: string): string {
   return ipStr
@@ -85,17 +49,13 @@ export function calcularSubneteo(
 
   // Bits para host de la red original
   const bitsHostOriginal = 32 - mascaraBits;
-  const {
-    decimal: bitsHostOriginalDecimal,
-    binario: bitsHostOriginalBinario,
-  } = calcularBitsBinarios(bitsHostOriginal);
+  const { decimal: bitsHostOriginalDecimal, binario: bitsHostOriginalBinario } =
+    calcularBitsBinarios(bitsHostOriginal);
 
   // Bits para host en la subred
   const bitsHostSubred = 32 - mascaraFinalBits;
-  const {
-    decimal: bitsHostSubredDecimal,
-    binario: bitsHostSubredBinario,
-  } = calcularBitsBinarios(bitsHostSubred);
+  const { decimal: bitsHostSubredDecimal, binario: bitsHostSubredBinario } =
+    calcularBitsBinarios(bitsHostSubred);
 
   // Bits para redes (si aplica)
   let bitsRedes = 0;
