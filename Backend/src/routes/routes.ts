@@ -7,7 +7,8 @@ const router = Router();
 
 router.get("/", (req: Request, res: Response) => {
   res.json({
-    routes: ["api/subnet"],
+    status: "OK",
+    routes: ["api/subnet", "api/subredes"],
   });
 });
 
@@ -15,12 +16,25 @@ router.post("/api/subnet", (req: any, res: any) => {
   let { ip, mascara, mascaraNueva } = req.body as SubnetRequest;
 
   const mascaraNum = Number(mascara);
+  const mascaraNuevaNum = mascaraNueva ? Number(mascaraNueva) : undefined;
 
-  const mascaraNuevaNum =
-    mascaraNueva !== undefined ? Number(mascaraNueva) : undefined;
   if (!ip || isNaN(mascaraNum)) {
     return res.status(400).json({ error: "Faltan datos requeridos" });
   }
+
+  const resultado = calcularSubneteo(ip, mascaraNum, mascaraNuevaNum);
+
+  return res.json(resultado);
+});
+
+router.post("/api/subredes", (req: any, res: any) => {
+  let { ip, mascara, mascaraNueva } = req.body as SubnetRequest;
+  const mascaraNum = Number(mascara);
+  const mascaraNuevaNum = mascaraNueva ? Number(mascaraNueva) : undefined;
+
+  !ip || isNaN(mascaraNum)
+    ? res.status(400).json({ error: "Faltan datos requeridos" })
+    : null;
 
   const resultado = calcularSubneteo(ip, mascaraNum, mascaraNuevaNum);
 
