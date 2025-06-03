@@ -4,12 +4,23 @@ export interface ResultadoSubneteo {
   ip: string;
   mascara: string;
   mascaraBits: number;
-  bitsHost: number;
-  bitsHostDecimal: string;
-  bitsHostBinario: string;
+
+  bitsHostOriginal: number;
+  bitsHostOriginalDecimal: string;
+  bitsHostOriginalBinario: string;
+
+  bitsHostSubred: number;
+  bitsHostSubredDecimal: string;
+  bitsHostSubredBinario: string;
+
   bitsRedes: number;
   bitsRedesDecimal: string;
   bitsRedesBinario: string;
+
+  nuevaMascaraBits: number;
+  nuevaMascaraDecimal: string;
+  nuevaMascaraBinario: string;
+
   red: string;
   hostMinimo: string;
   hostMaximo: string;
@@ -17,6 +28,7 @@ export interface ResultadoSubneteo {
   totalHosts: number;
   clase: string;
   tipoRed: string;
+
   ipBinario: string;
   mascaraBinario: string;
   redBinario: string;
@@ -66,15 +78,26 @@ export function calcularSubneteo(
   mascaraBits: number,
   mascaraNuevaBits?: number
 ): ResultadoSubneteo {
+  const mascaraFinalBits = mascaraNuevaBits ?? mascaraBits;
   const mascaraDecimal = ip.fromPrefixLen(mascaraBits);
-  const subnetInfo = ip.cidrSubnet(`${ipStr}/${mascaraBits}`);
+  const nuevaMascaraDecimal = ip.fromPrefixLen(mascaraFinalBits);
+  const subnetInfo = ip.cidrSubnet(`${ipStr}/${mascaraFinalBits}`);
 
-  // Bits de host (32 - máscara original)
-  const bitsHost = 32 - mascaraBits;
-  const { decimal: bitsHostDecimal, binario: bitsHostBinario } =
-    calcularBitsBinarios(bitsHost);
+  // Bits para host de la red original
+  const bitsHostOriginal = 32 - mascaraBits;
+  const {
+    decimal: bitsHostOriginalDecimal,
+    binario: bitsHostOriginalBinario,
+  } = calcularBitsBinarios(bitsHostOriginal);
 
-  // Bits para subredes (si hay máscara nueva)
+  // Bits para host en la subred
+  const bitsHostSubred = 32 - mascaraFinalBits;
+  const {
+    decimal: bitsHostSubredDecimal,
+    binario: bitsHostSubredBinario,
+  } = calcularBitsBinarios(bitsHostSubred);
+
+  // Bits para redes (si aplica)
   let bitsRedes = 0;
   let bitsRedesDecimal = "0.0.0.0";
   let bitsRedesBinario = "00000000.00000000.00000000.00000000";
@@ -90,13 +113,19 @@ export function calcularSubneteo(
     ip: ipStr,
     mascara: mascaraDecimal,
     mascaraBits,
-    bitsHost,
-    bitsHostDecimal,
-    bitsHostBinario,
+    bitsHostOriginal,
+    bitsHostOriginalDecimal,
+    bitsHostOriginalBinario,
+    bitsHostSubred,
+    bitsHostSubredDecimal,
+    bitsHostSubredBinario,
     bitsRedes,
     bitsRedesDecimal,
     bitsRedesBinario,
-    red: `${subnetInfo.networkAddress}/${mascaraBits}`,
+    nuevaMascaraBits: mascaraFinalBits,
+    nuevaMascaraDecimal,
+    nuevaMascaraBinario: toBinaryIP(nuevaMascaraDecimal),
+    red: `${subnetInfo.networkAddress}/${mascaraFinalBits}`,
     hostMinimo: subnetInfo.firstAddress,
     hostMaximo: subnetInfo.lastAddress,
     broadcast: subnetInfo.broadcastAddress,

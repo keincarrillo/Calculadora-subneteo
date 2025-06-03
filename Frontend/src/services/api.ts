@@ -29,7 +29,6 @@ const consultarApi = async (
   }
 
   const resultado = await res.json();
-  console.log(resultado);
   return resultado;
 };
 

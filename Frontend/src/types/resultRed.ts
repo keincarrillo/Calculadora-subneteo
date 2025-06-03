@@ -2,8 +2,17 @@ export type resultRed = {
   ip: string;
   mascara: string;
   mascaraBits: number;
-  bitsHostDecimal: string;
-  bitsHost: number;
+
+  // Bits host de la red original
+  bitsHostOriginal: number;
+  bitsHostOriginalDecimal: string;
+  bitsHostOriginalBinario: string;
+
+  // Bits host en la subred
+  bitsHostSubred: number;
+  bitsHostSubredDecimal: string;
+  bitsHostSubredBinario: string;
+
   red: string;
   hostMinimo: string;
   hostMaximo: string;
@@ -14,11 +23,18 @@ export type resultRed = {
 
   ipBinario: string;
   mascaraBinario: string;
-  bitsHostBinario: string;
   redBinario: string;
   hostMinimoBinario: string;
   hostMaximoBinario: string;
   broadcastBinario: string;
+
+  // Nuevos campos para la subred
+  bitsRedes: number;
+  bitsRedesDecimal: string;
+  bitsRedesBinario: string;
+  nuevaMascaraBits: number;
+  nuevaMascaraDecimal: string;
+  nuevaMascaraBinario: string;
 };
 
 export type PropsR = {

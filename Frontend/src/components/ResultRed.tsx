@@ -29,9 +29,9 @@ const ResultadosRed = ({ datos }: PropsR) => {
       <div className={rowClass}>
         <div className={labelClass}>BITS PARA HOST:</div>
         <div className={valueClass}>
-          {datos.bitsHostDecimal} = {datos.bitsHost}
+          {datos.bitsHostOriginalDecimal} = {datos.bitsHostOriginal}
         </div>
-        <div className={monoClass}>{datos.bitsHostBinario}</div>
+        <div className={monoClass}>{datos.bitsHostOriginalBinario}</div>
       </div>
 
       <div className={rowClass}>
@@ -65,6 +65,29 @@ const ResultadosRed = ({ datos }: PropsR) => {
           {datos.clase} {datos.tipoRed}
         </div>
       </div>
+
+      {datos.bitsRedes > 0 && (
+        <>
+          <hr className="my-2 border-gray-400" />
+          <h3 className={`${headerClass} mt-4`}>Para la subred</h3>
+
+          <div className={rowClass}>
+            <div className={labelClass}>NUEVA MÁSCARA:</div>
+            <div className={valueClass}>
+              {datos.nuevaMascaraDecimal} = {datos.nuevaMascaraBits}
+            </div>
+            <div className={monoClass}>{datos.nuevaMascaraBinario}</div>
+          </div>
+
+          <div className={rowClass}>
+            <div className={labelClass}>BITS PARA HOST:</div>
+            <div className={valueClass}>
+              {datos.bitsHostSubredDecimal} = {datos.bitsHostSubred}
+            </div>
+            <div className={monoClass}>{datos.bitsHostSubredBinario}</div>
+          </div>
+        </>
+      )}
     </div>
   );
 };
