@@ -13,9 +13,6 @@ const ResultadosSubredes = ({ subredes }: PropsS) => {
   const fin = inicio + itemsPorPagina;
   const subredesPagina = subredes.slice(inicio, fin);
 
-  const alturaSubred = 140; // Ajusta según diseño
-  const minHeight = itemsPorPagina * alturaSubred;
-
   const paginaAnterior = () => {
     if (paginaActual > 1) setPaginaActual(paginaActual - 1);
   };
@@ -23,7 +20,6 @@ const ResultadosSubredes = ({ subredes }: PropsS) => {
     if (paginaActual < totalPaginas) setPaginaActual(paginaActual + 1);
   };
 
-  // Buscar por número de subred y cambiar página
   const buscarPorNumeroSubred = (e: React.ChangeEvent<HTMLInputElement>) => {
     const valor = e.target.value.trim();
     setBusqueda(valor);
@@ -33,7 +29,6 @@ const ResultadosSubredes = ({ subredes }: PropsS) => {
       return;
     }
 
-    // Convertir a número, restar 1 para índice
     const num = Number(valor);
     if (!isNaN(num) && num >= 1 && num <= subredes.length) {
       const indiceEncontrado = num - 1;
@@ -43,21 +38,17 @@ const ResultadosSubredes = ({ subredes }: PropsS) => {
   };
 
   return (
-    <div
-      className="max-w-3xl mx-auto p-4 border border-blue-600 rounded-md bg-white font-sans animate-pop flex flex-col"
-      style={{ minHeight }}
-    >
+    <div className="max-w-3xl mx-auto p-4 border border-blue-600 rounded-md bg-white font-sans animate-pop flex flex-col min-h-[700px]">
       <h3 className={headerClass}>Resultados de las Subredes</h3>
 
-      {/* Input para buscar por número de subred */}
       <input
         type="number"
-        placeholder="Buscar por número de subred..."
+        placeholder={`Buscar por número de subred... (${subredes.length} totales)`}
         value={busqueda}
         onChange={buscarPorNumeroSubred}
         min={1}
         max={subredes.length}
-        className="mb-4 p-2 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="mb-6 p-2 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
 
       <div className="flex-grow space-y-6 overflow-auto">
@@ -97,12 +88,6 @@ type SubredItemProps = {
 const SubredItem = ({ idx, datos }: SubredItemProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const rowClass =
-    "grid grid-cols-[10rem_1fr_1fr] gap-1 items-start text-xs py-1";
-  const labelClass = "font-semibold text-right text-gray-700";
-  const valueClass = "text-left whitespace-nowrap text-gray-900";
-  const monoClass = "font-mono text-left text-gray-600 text-xs";
-
   return (
     <div className="p-4 bg-white rounded-md shadow-sm border border-blue-600 w-full">
       <h4
@@ -124,33 +109,59 @@ const SubredItem = ({ idx, datos }: SubredItemProps) => {
           isOpen ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className={rowClass}>
-          <div className={labelClass}>RED:</div>
-          <div className={valueClass}>{datos.red}</div>
-          <div className={monoClass}>{datos.redBinario}</div>
+        <div className="grid grid-cols-[10rem_1fr_1fr] gap-1 items-start text-xs py-1">
+          <div className="font-semibold text-right text-gray-700">RED:</div>
+          <div className="text-left whitespace-nowrap text-gray-900">
+            {datos.red}
+          </div>
+          <div className="font-mono text-left text-gray-600 text-xs">
+            {datos.redBinario}
+          </div>
         </div>
 
-        <div className={rowClass}>
-          <div className={labelClass}>HOST MÍNIMO:</div>
-          <div className={valueClass}>{datos.hostMinimo}</div>
-          <div className={monoClass}>{datos.hostMinimoBinario}</div>
+        <div className="grid grid-cols-[10rem_1fr_1fr] gap-1 items-start text-xs py-1">
+          <div className="font-semibold text-right text-gray-700">
+            HOST MÍNIMO:
+          </div>
+          <div className="text-left whitespace-nowrap text-gray-900">
+            {datos.hostMinimo}
+          </div>
+          <div className="font-mono text-left text-gray-600 text-xs">
+            {datos.hostMinimoBinario}
+          </div>
         </div>
 
-        <div className={rowClass}>
-          <div className={labelClass}>HOST MÁXIMO:</div>
-          <div className={valueClass}>{datos.hostMaximo}</div>
-          <div className={monoClass}>{datos.hostMaximoBinario}</div>
+        <div className="grid grid-cols-[10rem_1fr_1fr] gap-1 items-start text-xs py-1">
+          <div className="font-semibold text-right text-gray-700">
+            HOST MÁXIMO:
+          </div>
+          <div className="text-left whitespace-nowrap text-gray-900">
+            {datos.hostMaximo}
+          </div>
+          <div className="font-mono text-left text-gray-600 text-xs">
+            {datos.hostMaximoBinario}
+          </div>
         </div>
 
-        <div className={rowClass}>
-          <div className={labelClass}>BROADCAST:</div>
-          <div className={valueClass}>{datos.broadcast}</div>
-          <div className={monoClass}>{datos.broadcastBinario}</div>
+        <div className="grid grid-cols-[10rem_1fr_1fr] gap-1 items-start text-xs py-1">
+          <div className="font-semibold text-right text-gray-700">
+            BROADCAST:
+          </div>
+          <div className="text-left whitespace-nowrap text-gray-900">
+            {datos.broadcast}
+          </div>
+          <div className="font-mono text-left text-gray-600 text-xs">
+            {datos.broadcastBinario}
+          </div>
         </div>
 
-        <div className={`${rowClass} font-bold`}>
-          <div className={labelClass}>TOTAL DE HOSTS:</div>
-          <div className={valueClass}>{datos.totalHosts}</div>
+        <div className="grid grid-cols-[10rem_1fr_1fr] gap-1 items-start text-xs py-1 font-bold">
+          <div className="font-semibold text-right text-gray-700">
+            TOTAL DE HOSTS:
+          </div>
+          <div className="text-left whitespace-nowrap text-gray-900">
+            {datos.totalHosts}
+          </div>
           <div className="text-left text-sm font-semibold text-gray-900">
             {datos.clase} {datos.tipoRed}
           </div>
