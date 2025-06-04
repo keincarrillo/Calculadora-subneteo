@@ -38,7 +38,7 @@ const ResultadosSubredes = ({ subredes }: PropsS) => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-4 border border-blue-600 rounded-md bg-white font-sans animate-pop flex flex-col min-h-[700px]">
+    <div className="max-w-3xl mx-auto p-4 border border-blue-600 rounded-md bg-white font-sans animate-pop flex flex-col min-h-[700px] mt-10">
       <h3 className={headerClass}>Resultados de las Subredes</h3>
 
       <input
