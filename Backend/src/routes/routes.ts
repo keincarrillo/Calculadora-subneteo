@@ -1,7 +1,8 @@
 import { Router } from "express";
 import type { Request, Response } from "express";
 import type { SubnetRequest } from "../types/subnetTypes";
-import { calcularSubneteo } from "../utils/subnetCalculos";
+import { calcularSubneteo } from "../utils/ipDatos";
+import { calcularSubredes } from "../utils/subredesCalculos";
 
 const router = Router();
 
@@ -28,17 +29,29 @@ router.post("/api/subnet", (req: any, res: any) => {
 });
 
 router.post("/api/subredes", (req: any, res: any) => {
-  let { ip, mascara, mascaraNueva } = req.body as SubnetRequest;
+  const { ip, mascara, mascaraNueva } = req.body as SubnetRequest;
+
   const mascaraNum = Number(mascara);
-  const mascaraNuevaNum = mascaraNueva ? Number(mascaraNueva) : undefined;
+  const mascaraNuevaNum = Number(mascaraNueva);
 
-  !ip || isNaN(mascaraNum)
-    ? res.status(400).json({ error: "Faltan datos requeridos" })
-    : null;
+  if (!ip || isNaN(mascaraNum) || isNaN(mascaraNuevaNum)) {
+    return res.status(400).json({ error: "Faltan datos requeridos" });
+  }
 
-  const resultado = calcularSubneteo(ip, mascaraNum, mascaraNuevaNum);
+  if (mascaraNuevaNum <= mascaraNum) {
+    return res.status(400).json({
+      error: "La nueva máscara debe ser mayor que la máscara original.",
+    });
+  }
 
-  return res.json(resultado);
+  try {
+    const subredes = calcularSubredes(ip, mascaraNum, mascaraNuevaNum);
+    return res.json(subredes);
+  } catch (error: any) {
+    return res
+      .status(500)
+      .json({ error: error.message || "Error al calcular subredes." });
+  }
 });
 
 export default router;
