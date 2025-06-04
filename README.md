@@ -53,3 +53,5 @@ bun install
 bun run install:all
 bun run start:all
 ```
+
+El proyecto se va a levantar en el puerto: http://localhost:5173
