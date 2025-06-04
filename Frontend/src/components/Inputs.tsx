@@ -8,7 +8,10 @@ const IPForm = ({ onResultado, onSubredes }: PropsI) => {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm<FormData>();
+
+  const mascara = watch("mascara");
 
   const onSubmit = async (data: FormData) => {
     try {
@@ -35,7 +38,6 @@ const IPForm = ({ onResultado, onSubredes }: PropsI) => {
       onSubmit={handleSubmit(onSubmit)}
       className="max-w-full mx-auto mt-10 p-6 bg-white rounded shadow flex items-end space-x-6 animate-fadeIn"
     >
-      {/* Dirección IP */}
       <div className="flex flex-col w-40 animate-slideInUp">
         <label htmlFor="ip" className="font-semibold mb-2 text-center">
           Dirección IP
@@ -64,7 +66,6 @@ const IPForm = ({ onResultado, onSubredes }: PropsI) => {
         )}
       </div>
 
-      {/* Máscara */}
       <div className="flex flex-col w-40 animate-slideInUp delay-100">
         <label htmlFor="mascara" className="font-semibold mb-2 text-center">
           Máscara (bits)
@@ -93,7 +94,6 @@ const IPForm = ({ onResultado, onSubredes }: PropsI) => {
         )}
       </div>
 
-      {/* Máscara Nueva */}
       <div className="flex flex-col w-40 animate-slideInUp delay-200">
         <label
           htmlFor="mascaraNueva"
@@ -107,6 +107,10 @@ const IPForm = ({ onResultado, onSubredes }: PropsI) => {
           {...register("mascaraNueva", {
             min: { value: 0, message: "Debe ser mínimo 0" },
             max: { value: 32, message: "Debe ser máximo 32" },
+            validate: (value) =>
+              !value ||
+              Number(value) > Number(mascara) ||
+              "Debe ser mayor que la Máscara",
           })}
           className={`w-full border rounded px-3 py-2 h-10 focus:outline-none focus:ring-2 transition duration-300 ${
             errors.mascaraNueva
@@ -124,7 +128,6 @@ const IPForm = ({ onResultado, onSubredes }: PropsI) => {
         )}
       </div>
 
-      {/* Botón */}
       <button
         type="submit"
         className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 rounded transition transform hover:scale-105 active:scale-95 animate-bounce h-10 self-end mb-5"
