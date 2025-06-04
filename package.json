@@ -6,7 +6,10 @@
   "scripts": {
     "backend:start": "bun --watch Backend/src/api/api.ts",
     "frontend:start": "cd Frontend && bun run start:frontend",
-    "start": "concurrently \"bun run backend:start\" \"bun run frontend:start\""
+    "start:all": "concurrently \"bun run backend:start\" \"bun run frontend:start\"",
+    "install:frontend": "cd Frontend && bun install",
+    "install:backend": "cd Backend && bun install",
+    "install:all": "concurrently \"bun run install:frontend\" \"bun run install:backend\""
   },
   "devDependencies": {
     "@types/bun": "latest"
