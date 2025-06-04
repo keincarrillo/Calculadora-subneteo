@@ -2,7 +2,7 @@
 
 ## Requisitos previos
 
-Asegúrate de tener **Bun** instalado en tu sistema. Si no lo tienes, sigue estos pasos para instalarlo:
+Asegúrate de tener **Bun** o **Node.js** instalado en tu sistema. Si no lo tienes, sigue estos pasos para instalarlo:
 
 ### Instalación de Bun
 
@@ -20,6 +20,28 @@ Puedes descargar el instalador aqui: https://bun.sh/ o usa el siguiente comando 
 
 ```bash
 iwr https://bun.sh/install -useb | iex
+```
+
+Verifica la instalación con:
+
+```bash
+bun --version
+```
+
+### Instalación con Node.js
+
+Si prefieres usar Node.js, asegúrate de tenerlo instalado con el siguiente comando:
+
+```bash
+node --version
+```
+
+Si Node.js no está instalado, puedes descargarlo desde aquí: https://nodejs.org/es
+
+Ejecuta el siguiente comando para instalar bun desde Node.js
+
+```bash
+npm install -g bun
 ```
 
 ### Levantar el Proyecto
