@@ -46,10 +46,15 @@ npm install -g bun
 
 ### Levantar el Proyecto
 
-Para levantar el proyecto e instalar las dependencias usa los siguientes comandos en tu terminal de GitBash
+Para instalar las dependencias usa el siguiente comando en tu terminal de GitBash
 
 ```bash
 bun install
+```
+
+Levanta el proyecto con los siguientes comandos en tu terminal de GitBash
+
+```bash
 bun run install:all
 bun run start:all
 ```
