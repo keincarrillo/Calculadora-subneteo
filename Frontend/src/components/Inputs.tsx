@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import type { FormData } from "../types/formValues";
 import type { PropsI } from "../types/resultRed";
 
-const IPForm = ({ onResultado }: PropsI) => {
+const IPForm = ({ onResultado, onSubredes }: PropsI) => {
   const {
     register,
     handleSubmit,
@@ -14,6 +14,17 @@ const IPForm = ({ onResultado }: PropsI) => {
     try {
       const resultado = await consultarApi("api/subnet", data, "POST");
       onResultado(resultado);
+
+      if (
+        data.mascaraNueva &&
+        Number(data.mascaraNueva) > Number(data.mascara) &&
+        onSubredes
+      ) {
+        const subredes = await consultarApi("api/subredes", data, "POST");
+        onSubredes(subredes);
+      } else if (onSubredes) {
+        onSubredes([]);
+      }
     } catch (error) {
       console.error("Error al consultar la API:", error);
     }
@@ -22,8 +33,9 @@ const IPForm = ({ onResultado }: PropsI) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="max-w-full mx-auto mt-10 p-6 bg-white rounded shadow flex flex-row items-center space-x-6 animate-fadeIn"
+      className="max-w-full mx-auto mt-10 p-6 bg-white rounded shadow flex items-end space-x-6 animate-fadeIn"
     >
+      {/* Dirección IP */}
       <div className="flex flex-col w-40 animate-slideInUp">
         <label htmlFor="ip" className="font-semibold mb-2 text-center">
           Dirección IP
@@ -38,7 +50,7 @@ const IPForm = ({ onResultado }: PropsI) => {
               message: "IP no válida",
             },
           })}
-          className={`w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 transition duration-300 ${
+          className={`w-full border rounded px-3 py-2 h-10 focus:outline-none focus:ring-2 transition duration-300 ${
             errors.ip
               ? "border-red-500 ring-red-300 animate-shake"
               : "border-gray-300 ring-blue-300"
@@ -52,6 +64,7 @@ const IPForm = ({ onResultado }: PropsI) => {
         )}
       </div>
 
+      {/* Máscara */}
       <div className="flex flex-col w-40 animate-slideInUp delay-100">
         <label htmlFor="mascara" className="font-semibold mb-2 text-center">
           Máscara (bits)
@@ -64,7 +77,7 @@ const IPForm = ({ onResultado }: PropsI) => {
             min: { value: 0, message: "Debe ser mínimo 0" },
             max: { value: 32, message: "Debe ser máximo 32" },
           })}
-          className={`w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 transition duration-300 ${
+          className={`w-full border rounded px-3 py-2 h-10 focus:outline-none focus:ring-2 transition duration-300 ${
             errors.mascara
               ? "border-red-500 ring-red-300 animate-shake"
               : "border-gray-300 ring-blue-300"
@@ -80,10 +93,11 @@ const IPForm = ({ onResultado }: PropsI) => {
         )}
       </div>
 
-      <div className="flex flex-col w-40 animate-slideInUp delay-200 min-h-[5rem]">
+      {/* Máscara Nueva */}
+      <div className="flex flex-col w-40 animate-slideInUp delay-200">
         <label
           htmlFor="mascaraNueva"
-          className="font-semibold mb-1 text-center whitespace-normal"
+          className="font-semibold mb-2 text-center whitespace-normal"
         >
           Máscara Nueva (bits)
         </label>
@@ -94,7 +108,7 @@ const IPForm = ({ onResultado }: PropsI) => {
             min: { value: 0, message: "Debe ser mínimo 0" },
             max: { value: 32, message: "Debe ser máximo 32" },
           })}
-          className={`w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 transition duration-300 ${
+          className={`w-full border rounded px-3 py-2 h-10 focus:outline-none focus:ring-2 transition duration-300 ${
             errors.mascaraNueva
               ? "border-red-500 ring-red-300 animate-shake"
               : "border-gray-300 ring-blue-300"
@@ -110,9 +124,10 @@ const IPForm = ({ onResultado }: PropsI) => {
         )}
       </div>
 
+      {/* Botón */}
       <button
         type="submit"
-        className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded transition transform hover:scale-105 active:scale-95 animate-bounce self-center"
+        className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 rounded transition transform hover:scale-105 active:scale-95 animate-bounce h-10 self-end mb-5"
       >
         Calcular
       </button>

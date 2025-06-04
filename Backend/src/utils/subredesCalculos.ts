@@ -34,6 +34,5 @@ export function calcularSubredes(
 
     subredes.push(resultado);
   }
-  console.log(subredes);
   return subredes;
 }

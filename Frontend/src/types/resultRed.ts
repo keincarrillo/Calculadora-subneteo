@@ -41,6 +41,11 @@ export type PropsR = {
   datos: resultRed;
 };
 
-export type PropsI = {
+export interface PropsI {
   onResultado: (res: resultRed) => void;
+  onSubredes?: (subreds: resultRed[]) => void;
+}
+
+export type PropsS = {
+  subredes: resultRed[];
 };
