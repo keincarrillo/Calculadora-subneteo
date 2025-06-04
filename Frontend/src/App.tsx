@@ -12,7 +12,7 @@ const App = () => {
     <>
       <h1 className="text-center text-3xl py-5">Calculadora Subneteo</h1>
 
-      <div className="flex justify-center gap-32 px-8">
+      <div className="flex justify-center gap-20 px-4">
         <div className="flex flex-col gap-6 max-w-2xl w-full items-center">
           <Inputs onResultado={setResultado} onSubredes={setSubredes} />
           {resultado && <ResultadosRed datos={resultado} />}
