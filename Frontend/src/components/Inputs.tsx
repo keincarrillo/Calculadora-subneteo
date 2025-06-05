@@ -55,7 +55,7 @@ const IPForm = ({ onResultado, onSubredes }: PropsI) => {
           className={`w-full border rounded px-3 py-2 h-10 focus:outline-none focus:ring-2 transition duration-300 ${
             errors.ip
               ? "border-red-500 ring-red-300 animate-shake"
-              : "border-gray-300 ring-blue-300"
+              : "border-gray-300 ring-aquamarine-500/50"
           }`}
           placeholder="Ej: 192.168.0.1"
         />
@@ -81,7 +81,7 @@ const IPForm = ({ onResultado, onSubredes }: PropsI) => {
           className={`w-full border rounded px-3 py-2 h-10 focus:outline-none focus:ring-2 transition duration-300 ${
             errors.mascara
               ? "border-red-500 ring-red-300 animate-shake"
-              : "border-gray-300 ring-blue-300"
+              : "border-gray-300 ring-aquamarine-500/50"
           }`}
           placeholder="Ej: 24"
         />
@@ -115,7 +115,7 @@ const IPForm = ({ onResultado, onSubredes }: PropsI) => {
           className={`w-full border rounded px-3 py-2 h-10 focus:outline-none focus:ring-2 transition duration-300 ${
             errors.mascaraNueva
               ? "border-red-500 ring-red-300 animate-shake"
-              : "border-gray-300 ring-blue-300"
+              : "border-gray-300 ring-aquamarine-500/50"
           }`}
           placeholder="Opcional"
         />
@@ -130,7 +130,7 @@ const IPForm = ({ onResultado, onSubredes }: PropsI) => {
 
       <button
         type="submit"
-        className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 rounded transition transform hover:scale-105 active:scale-95 animate-bounce h-10 self-end mb-5"
+        className="bg-aquamarine-600 hover:bg-aquamarine-700 text-white font-bold px-6 rounded transition transform hover:scale-105 active:scale-95 animate-bounce h-10 self-end mb-5"
       >
         Calcular
       </button>

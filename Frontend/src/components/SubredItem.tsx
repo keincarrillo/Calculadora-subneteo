@@ -5,14 +5,14 @@ export const SubredItem = ({ idx, datos }: SubredItemProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="px-3 bg-white rounded-md shadow-sm border border-blue-600 w-full flex flex-col justify-center">
+    <div className="px-3 bg-white rounded-md shadow-sm border border-aquamarine-600 w-full flex flex-col justify-center">
       <h4
         className="font-bold mb-1 text-gray-900 cursor-pointer select-none flex justify-between items-center group"
         onClick={() => setIsOpen(!isOpen)}
       >
         Subred {idx + 1}
         <span
-          className={`transition-transform duration-300 group-hover:text-blue-600 hover:scale-110 ${
+          className={`transition-transform duration-300 group-hover:text-aquamarine-600 hover:scale-110 ${
             isOpen ? "rotate-y-180" : ""
           }`}
         >

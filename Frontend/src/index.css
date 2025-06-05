@@ -1,3 +1,16 @@
 @import "tailwindcss";
 @plugin "@midudev/tailwind-animations";
 
+@theme {
+    --color-aquamarine-50: #e8fff9;
+    --color-aquamarine-100: #c8ffee;
+    --color-aquamarine-200: #97ffe2;
+    --color-aquamarine-300: #54ffd8;
+    --color-aquamarine-400: #0af5c6;
+    --color-aquamarine-500: #00ddb1;
+    --color-aquamarine-600: #00b593;
+    --color-aquamarine-700: #00917a;
+    --color-aquamarine-800: #007261;
+    --color-aquamarine-900: #005e51;
+    --color-aquamarine-950: #003530;
+}

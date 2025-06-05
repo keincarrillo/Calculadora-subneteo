@@ -43,29 +43,25 @@ export const calcularBitsBinarios = (
 
 export function calcularSubneteo(
   ipStr: string,
-  mascaraBits: number,   // Esto es la máscara original
-  mascaraNuevaBits?: number  // Esto es la máscara nueva para subredes
+  mascaraBits: number,   
+  mascaraNuevaBits?: number  
 ): ResultadoSubneteo {
-  // Usamos mascaraBits para la red y mascaraNuevaBits para las subredes
-  const mascaraFinalBits = mascaraNuevaBits ?? mascaraBits;  // Si no se pasa mascaraNuevaBits, usa mascaraBits para la red
-  
-  const mascaraDecimal = ip.fromPrefixLen(mascaraBits); // Usamos la máscara original para la red
-  const nuevaMascaraDecimal = ip.fromPrefixLen(mascaraFinalBits);  // Usamos la máscara nueva para las subredes
-  
-  // Aquí cambiamos para que siempre se use mascaraBits para calcular la red base
-  const subnetInfo = ip.cidrSubnet(`${ipStr}/${mascaraBits}`);  // Usamos mascaraBits para calcular la red base
 
-  // Bits para host de la red original
+  const mascaraFinalBits = mascaraNuevaBits ?? mascaraBits; 
+  
+  const mascaraDecimal = ip.fromPrefixLen(mascaraBits); 
+  const nuevaMascaraDecimal = ip.fromPrefixLen(mascaraFinalBits); 
+  
+  const subnetInfo = ip.cidrSubnet(`${ipStr}/${mascaraBits}`);  
+
   const bitsHostOriginal = BITS_IP - mascaraBits;
   const { decimal: bitsHostOriginalDecimal, binario: bitsHostOriginalBinario } =
     calcularBitsBinarios(bitsHostOriginal);
 
-  // Bits para host en la subred
   const bitsHostSubred = BITS_IP - mascaraFinalBits;
   const { decimal: bitsHostSubredDecimal, binario: bitsHostSubredBinario } =
     calcularBitsBinarios(bitsHostSubred);
 
-  // Bits para redes (si aplica)
   let bitsRedes = 0;
   let bitsRedesDecimal = "0.0.0.0";
   let bitsRedesBinario = "00000000.00000000.00000000.00000000";
@@ -93,7 +89,7 @@ export function calcularSubneteo(
     nuevaMascaraBits: mascaraFinalBits,
     nuevaMascaraDecimal,
     nuevaMascaraBinario: toBinaryIP(nuevaMascaraDecimal),
-    red: `${subnetInfo.networkAddress}/${mascaraBits}`,  // Usamos mascaraBits para la red
+    red: `${subnetInfo.networkAddress}/${mascaraBits}`, 
     hostMinimo: subnetInfo.firstAddress,
     hostMaximo: subnetInfo.lastAddress,
     broadcast: subnetInfo.broadcastAddress,

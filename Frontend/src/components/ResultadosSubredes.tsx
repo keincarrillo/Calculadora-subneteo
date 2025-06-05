@@ -39,7 +39,7 @@ const ResultadosSubredes = ({ subredes }: PropsS) => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-4 border border-blue-600 rounded-md bg-white font-sans animate-pop flex flex-col min-h-[550px] mt-10">
+    <div className="max-w-3xl mx-auto p-4 border border-aquamarine-600 rounded-md bg-white font-sans animate-pop flex flex-col min-h-[550px] mt-10">
       <h3 className={headerClass}>Resultados de las Subredes</h3>
 
       <input
@@ -49,7 +49,7 @@ const ResultadosSubredes = ({ subredes }: PropsS) => {
         onChange={buscarPorNumeroSubred}
         min={1}
         max={subredes.length}
-        className="mb-6 p-2 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="mb-6 p-2 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-aquamarine-500/50"
       />
 
       <div className="flex-grow space-y-3 overflow-auto">
@@ -62,7 +62,7 @@ const ResultadosSubredes = ({ subredes }: PropsS) => {
         <button
           onClick={paginaAnterior}
           disabled={paginaActual === 1}
-          className="px-4 py-2 bg-blue-600 text-white rounded disabled:opacity-50 animate-scaleIn hover:animate-pop hover:cursor-pointer"
+          className="px-4 py-2 bg-aquamarine-700 text-white rounded disabled:opacity-50 animate-scaleIn hover:animate-pop hover:cursor-pointer"
         >
           Anterior
         </button>
@@ -72,7 +72,7 @@ const ResultadosSubredes = ({ subredes }: PropsS) => {
         <button
           onClick={paginaSiguiente}
           disabled={paginaActual === totalPaginas}
-          className="px-4 py-2 bg-blue-600 text-white rounded disabled:opacity-50 animate-scaleIn hover:animate-pop hover:cursor-pointer"
+          className="px-4 py-2 bg-aquamarine-700 text-white rounded disabled:opacity-50 animate-scaleIn hover:animate-pop hover:cursor-pointer"
         >
           Siguiente
         </button>
