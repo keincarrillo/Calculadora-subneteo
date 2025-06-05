@@ -46,10 +46,11 @@ export function calcularSubneteo(
   mascaraBits: number,
   mascaraNuevaBits?: number
 ): ResultadoSubneteo {
-  const mascaraFinalBits = mascaraNuevaBits ?? mascaraBits; // Asigna mascaraNuevaBits si existe, de lo contrario, usa mascaraBits
-  const mascaraDecimal = ip.fromPrefixLen(mascaraBits); // Devuelve la mascara en formato de ip
-  const nuevaMascaraDecimal = ip.fromPrefixLen(mascaraFinalBits);
-  const subnetInfo = ip.cidrSubnet(`${ipStr}/${mascaraFinalBits}`); // Pasa la ip y la mascara a la función cidrSubnet
+
+  const mascaraFinalBits = mascaraNuevaBits ?? mascaraBits;
+  const mascaraDecimal = ip.fromPrefixLen(mascaraBits); 
+  const nuevaMascaraDecimal = ip.fromPrefixLen(mascaraFinalBits);  
+  const subnetInfo = ip.cidrSubnet(`${ipStr}/${mascaraFinalBits}`);
 
   // Bits para host de la red original
   const bitsHostOriginal = BITS_IP - mascaraBits;

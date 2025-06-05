@@ -25,14 +25,15 @@ export function calcularSubredes(
     const subredInt = baseInt + i * totalHostsPorSubred;
     const subredIp = ip.fromLong(subredInt);
 
-    // Calcular datos de cada subred con tu función existente, pero forzando la nueva máscara
+    // Usar la máscara original (mascaraBitsOriginal) para los resultados de la red
     const resultado = calcularSubneteo(
       subredIp,
-      mascaraBitsOriginal,
-      mascaraBitsNueva
+      mascaraBitsOriginal,  // Cambiar esto para usar la máscara original
+      mascaraBitsNueva      // Aquí usamos la máscara nueva para los cálculos de subred
     );
 
     subredes.push(resultado);
   }
+
   return subredes;
 }
