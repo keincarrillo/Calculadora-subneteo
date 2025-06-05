@@ -49,3 +49,8 @@ export interface PropsI {
 export type PropsS = {
   subredes: resultRed[];
 };
+
+export type SubredItemProps = {
+  idx: number;
+  datos: resultRed;
+};
