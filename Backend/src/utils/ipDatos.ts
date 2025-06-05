@@ -43,14 +43,17 @@ export const calcularBitsBinarios = (
 
 export function calcularSubneteo(
   ipStr: string,
-  mascaraBits: number,
-  mascaraNuevaBits?: number
+  mascaraBits: number,   // Esto es la máscara original
+  mascaraNuevaBits?: number  // Esto es la máscara nueva para subredes
 ): ResultadoSubneteo {
-
-  const mascaraFinalBits = mascaraNuevaBits ?? mascaraBits;
-  const mascaraDecimal = ip.fromPrefixLen(mascaraBits); 
-  const nuevaMascaraDecimal = ip.fromPrefixLen(mascaraFinalBits);  
-  const subnetInfo = ip.cidrSubnet(`${ipStr}/${mascaraFinalBits}`);
+  // Usamos mascaraBits para la red y mascaraNuevaBits para las subredes
+  const mascaraFinalBits = mascaraNuevaBits ?? mascaraBits;  // Si no se pasa mascaraNuevaBits, usa mascaraBits para la red
+  
+  const mascaraDecimal = ip.fromPrefixLen(mascaraBits); // Usamos la máscara original para la red
+  const nuevaMascaraDecimal = ip.fromPrefixLen(mascaraFinalBits);  // Usamos la máscara nueva para las subredes
+  
+  // Aquí cambiamos para que siempre se use mascaraBits para calcular la red base
+  const subnetInfo = ip.cidrSubnet(`${ipStr}/${mascaraBits}`);  // Usamos mascaraBits para calcular la red base
 
   // Bits para host de la red original
   const bitsHostOriginal = BITS_IP - mascaraBits;
@@ -90,7 +93,7 @@ export function calcularSubneteo(
     nuevaMascaraBits: mascaraFinalBits,
     nuevaMascaraDecimal,
     nuevaMascaraBinario: toBinaryIP(nuevaMascaraDecimal),
-    red: `${subnetInfo.networkAddress}/${mascaraFinalBits}`,
+    red: `${subnetInfo.networkAddress}/${mascaraBits}`,  // Usamos mascaraBits para la red
     hostMinimo: subnetInfo.firstAddress,
     hostMaximo: subnetInfo.lastAddress,
     broadcast: subnetInfo.broadcastAddress,
@@ -105,3 +108,4 @@ export function calcularSubneteo(
     broadcastBinario: toBinaryIP(subnetInfo.broadcastAddress),
   };
 }
+
