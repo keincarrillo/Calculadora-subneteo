@@ -72,7 +72,7 @@ const ResultadosSubredes = ({ subredes }: PropsS) => {
         <button
           onClick={paginaSiguiente}
           disabled={paginaActual === totalPaginas}
-          className="px-4 py-2 dark:bg-aquamarine-600/40 text-white rounded disabled:opacity-50 animate-scaleIn hover:animate-pop hover:cursor-pointer dark:hover:bg-aquamarine-600/70"
+          className="px-4 py-2 bg-aquamarine-700 dark:bg-aquamarine-600/40 text-white rounded disabled:opacity-50 animate-scaleIn hover:animate-pop hover:cursor-pointer dark:hover:bg-aquamarine-600/70"
         >
           Siguiente
         </button>
