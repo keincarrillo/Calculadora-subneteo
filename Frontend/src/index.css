@@ -1,6 +1,13 @@
+/* src/index.css */
+
+/* Importar Tailwind */
 @import "tailwindcss";
 @plugin "@midudev/tailwind-animations";
 
+/* Definir variantes para el tema oscuro */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Importar el tema personalizado con tus colores */
 @theme {
     --color-aquamarine-50: #e8fff9;
     --color-aquamarine-100: #c8ffee;
@@ -13,4 +20,50 @@
     --color-aquamarine-800: #007261;
     --color-aquamarine-900: #005e51;
     --color-aquamarine-950: #003530;
+}
+
+/* Tema claro - Fondo y texto en colores claros por defecto */
+@layer base {
+  body {
+    font-family: Arial, sans-serif;
+    background-color: var(--color-aquamarine-50);  /* Fondo claro */
+    color: var(--color-aquamarine-900);  /* Texto oscuro */
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+/* Tema oscuro - Estilo oscuro al agregar la clase `dark` */
+@layer base {
+  .dark {
+    background-color: var(--color-aquamarine-900); /* Fondo oscuro */
+    color: var(--color-aquamarine-50); /* Texto claro */
+  }
+
+  /* Personalización de algunos componentes */
+  .dark .bg-blue-500 {
+    background-color: var(--color-aquamarine-400); /* Azul para el botón en modo oscuro */
+  }
+
+  .dark .bg-gray-900 {
+    background-color: var(--color-aquamarine-800); /* Fondo gris oscuro para el cuerpo */
+  }
+
+  .dark .text-white {
+    color: var(--color-aquamarine-50); /* Texto blanco en modo oscuro */
+  }
+}
+
+/* Aquí puedes agregar más personalizaciones específicas para otros elementos */
+
+/* Ejemplo de cómo personalizar otros colores del tema */
+@layer components {
+  .dark .btn {
+    background-color: var(--color-aquamarine-600);
+    color: var(--color-aquamarine-50);
+  }
+
+  .dark .card {
+    background-color: var(--color-aquamarine-800);
+    border: 1px solid var(--color-aquamarine-700);
+  }
 }

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import type { PropsS } from "../types/resultRed";
-import {SubredItem} from "./SubredItem";
+import { SubredItem } from "./SubredItem";
 
 const ResultadosSubredes = ({ subredes }: PropsS) => {
-  const headerClass = "text-center text-sm font-semibold mb-4 text-gray-900";
+  const headerClass = "text-center text-sm font-semibold mb-4 text-gray-900 dark:text-white";
 
   const [paginaActual, setPaginaActual] = useState(1);
   const [busqueda, setBusqueda] = useState("");
@@ -39,7 +39,7 @@ const ResultadosSubredes = ({ subredes }: PropsS) => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-4 border border-aquamarine-600 rounded-md bg-white font-sans animate-pop flex flex-col min-h-[550px] mt-10">
+    <div className="max-w-3xl mx-auto p-4 border border-aquamarine-600 rounded-md bg-white dark:bg-gray-950 font-sans animate-pop flex flex-col min-h-[550px] mt-10">
       <h3 className={headerClass}>Resultados de las Subredes</h3>
 
       <input
@@ -49,7 +49,7 @@ const ResultadosSubredes = ({ subredes }: PropsS) => {
         onChange={buscarPorNumeroSubred}
         min={1}
         max={subredes.length}
-        className="mb-6 p-2 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-aquamarine-500/50"
+        className="mb-6 p-2 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-aquamarine-500/50 dark:bg-aquamarine-800 dark:border-aquamarine-700 dark:text-white"
       />
 
       <div className="flex-grow space-y-3 overflow-auto">
@@ -62,17 +62,17 @@ const ResultadosSubredes = ({ subredes }: PropsS) => {
         <button
           onClick={paginaAnterior}
           disabled={paginaActual === 1}
-          className="px-4 py-2 bg-aquamarine-700 text-white rounded disabled:opacity-50 animate-scaleIn hover:animate-pop hover:cursor-pointer"
+          className="px-4 py-2 bg-aquamarine-700 text-white rounded disabled:opacity-50 animate-scaleIn hover:animate-pop hover:cursor-pointer dark:bg-aquamarine-600/40 dark:hover:bg-aquamarine-600/70"
         >
           Anterior
         </button>
-        <span className="self-center text-gray-700">
+        <span className="self-center text-gray-700 dark:text-white">
           Página {paginaActual} de {totalPaginas}
         </span>
         <button
           onClick={paginaSiguiente}
           disabled={paginaActual === totalPaginas}
-          className="px-4 py-2 bg-aquamarine-700 text-white rounded disabled:opacity-50 animate-scaleIn hover:animate-pop hover:cursor-pointer"
+          className="px-4 py-2 dark:bg-aquamarine-600/40 text-white rounded disabled:opacity-50 animate-scaleIn hover:animate-pop hover:cursor-pointer dark:hover:bg-aquamarine-600/70"
         >
           Siguiente
         </button>
@@ -80,9 +80,5 @@ const ResultadosSubredes = ({ subredes }: PropsS) => {
     </div>
   );
 };
-
-
-
-
 
 export default ResultadosSubredes;

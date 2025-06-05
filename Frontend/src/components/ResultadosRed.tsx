@@ -9,7 +9,7 @@ const ResultadosRed = ({ datos }: PropsR) => {
   const monoClass = "font-mono text-left";
 
   return (
-    <div className="max-w-2xl mx-auto p-4 border border-aquamarine-600 rounded-md bg-white text-gray-900 font-sans animate-pop">
+    <div className="max-w-2xl mx-auto p-4 border border-aquamarine-600 rounded-md bg-white text-gray-900 font-sans dark:bg-gray-950 dark:text-white dark:border-aquamarine-600/40 animate-pop">
       <h3 className={headerClass}>Resultados de la Red</h3>
 
       <div className={rowClass}>
@@ -68,7 +68,7 @@ const ResultadosRed = ({ datos }: PropsR) => {
 
       {datos.bitsRedes > 0 && (
         <>
-          <hr className="my-2 border-aquamarine-600" />
+          <hr className="my-2 border-aquamarine-600 dark:border-aquamarine-600/40" />
           <h3 className={`${headerClass} mt-4`}>Para la subred</h3>
 
           <div className={rowClass}>

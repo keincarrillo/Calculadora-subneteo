@@ -36,10 +36,10 @@ const IPForm = ({ onResultado, onSubredes }: PropsI) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="max-w-full mx-auto mt-10 p-6 bg-white rounded shadow flex items-end space-x-6 animate-fadeIn"
+      className="max-w-full mx-auto mt-10 p-6 bg-white dark:bg-gray-950 dark:border-2 dark:border-aquamarine-600/40 rounded shadow flex items-end space-x-6 animate-fadeIn"
     >
       <div className="flex flex-col w-40 animate-slideInUp">
-        <label htmlFor="ip" className="font-semibold mb-2 text-center">
+        <label htmlFor="ip" className="font-semibold mb-2 text-center text-black dark:text-white">
           Dirección IP
         </label>
         <input
@@ -55,7 +55,7 @@ const IPForm = ({ onResultado, onSubredes }: PropsI) => {
           className={`w-full border rounded px-3 py-2 h-10 focus:outline-none focus:ring-2 transition duration-300 ${
             errors.ip
               ? "border-red-500 ring-red-300 animate-shake"
-              : "border-gray-300 ring-aquamarine-500/50"
+              : "border-gray-300 ring-aquamarine-500/50 dark:bg-aquamarine-800 dark:border-aquamarine-700"
           }`}
           placeholder="Ej: 192.168.0.1"
         />
@@ -67,7 +67,7 @@ const IPForm = ({ onResultado, onSubredes }: PropsI) => {
       </div>
 
       <div className="flex flex-col w-40 animate-slideInUp delay-100">
-        <label htmlFor="mascara" className="font-semibold mb-2 text-center">
+        <label htmlFor="mascara" className="font-semibold mb-2 text-center text-black dark:text-white">
           Máscara (bits)
         </label>
         <input
@@ -81,7 +81,7 @@ const IPForm = ({ onResultado, onSubredes }: PropsI) => {
           className={`w-full border rounded px-3 py-2 h-10 focus:outline-none focus:ring-2 transition duration-300 ${
             errors.mascara
               ? "border-red-500 ring-red-300 animate-shake"
-              : "border-gray-300 ring-aquamarine-500/50"
+              : "border-gray-300 ring-aquamarine-500/50 dark:bg-aquamarine-800 dark:border-aquamarine-700"
           }`}
           placeholder="Ej: 24"
         />
@@ -97,7 +97,7 @@ const IPForm = ({ onResultado, onSubredes }: PropsI) => {
       <div className="flex flex-col w-40 animate-slideInUp delay-200">
         <label
           htmlFor="mascaraNueva"
-          className="font-semibold mb-2 text-center whitespace-normal"
+          className="font-semibold mb-2 text-center whitespace-normal text-black dark:text-white"
         >
           Máscara Nueva (bits)
         </label>
@@ -115,7 +115,7 @@ const IPForm = ({ onResultado, onSubredes }: PropsI) => {
           className={`w-full border rounded px-3 py-2 h-10 focus:outline-none focus:ring-2 transition duration-300 ${
             errors.mascaraNueva
               ? "border-red-500 ring-red-300 animate-shake"
-              : "border-gray-300 ring-aquamarine-500/50"
+              : "border-gray-300 ring-aquamarine-500/50 dark:bg-aquamarine-800 dark:border-aquamarine-700"
           }`}
           placeholder="Opcional"
         />
@@ -130,7 +130,7 @@ const IPForm = ({ onResultado, onSubredes }: PropsI) => {
 
       <button
         type="submit"
-        className="bg-aquamarine-600 hover:bg-aquamarine-700 text-white font-bold px-6 rounded transition transform hover:scale-105 active:scale-95 animate-bounce h-10 self-end mb-5"
+        className="bg-aquamarine-600 hover:bg-aquamarine-700 text-white font-bold px-6 rounded transition transform hover:scale-105 active:scale-95 animate-bounce h-10 self-end mb-5 dark:bg-aquamarine-600/40 dark:hover:bg-aquamarine-600/70"
       >
         Calcular
       </button>
