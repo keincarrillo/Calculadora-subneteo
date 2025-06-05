@@ -34,7 +34,7 @@ const App = () => {
   }, [isDarkMode]);
 
   return (
-    <div className={`min-h-screen bg-white text-black dark:bg-gray-950 dark:text-white`}>
+    <div className="min-h-screen bg-white text-black dark:bg-gray-950 dark:text-white">
       <div className="flex justify-between items-center px-10 py-6">
         <h1 className="text-3xl text-center">Calculadora Subneteo</h1>
         <button
