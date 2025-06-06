@@ -12,6 +12,7 @@ const ResultadosRed = ({ datos }: PropsR) => {
     <div className="max-w-2xl mx-auto p-4 border border-aquamarine-600 rounded-md bg-white text-gray-900 font-sans dark:bg-gray-950 dark:text-white dark:border-aquamarine-600/40 animate-pop">
       <h3 className={headerClass}>Resultados de la Red</h3>
 
+      {/* Información de la Red Base */}
       <div className={rowClass}>
         <div className={labelClass}>IP:</div>
         <div className={valueClass}>{datos.ip}</div>
@@ -66,6 +67,7 @@ const ResultadosRed = ({ datos }: PropsR) => {
         </div>
       </div>
 
+      {/* Mostrar resultados solo si hay subredes (máscara nueva proporcionada) */}
       {datos.bitsRedes > 0 && (
         <>
           <hr className="my-2 border-aquamarine-600 dark:border-aquamarine-600/40" />
