@@ -3,17 +3,14 @@ export type resultRed = {
   mascara: string;
   mascaraBits: number;
 
-  // Bits host de la red original
   bitsHostOriginal: number;
   bitsHostOriginalDecimal: string;
   bitsHostOriginalBinario: string;
 
-  // Bits host en la subred
   bitsHostSubred: number;
   bitsHostSubredDecimal: string;
   bitsHostSubredBinario: string;
 
-  // Resultados de la red base
   red: string;
   hostMinimo: string;
   hostMaximo: string;
@@ -22,7 +19,6 @@ export type resultRed = {
   clase: string;
   tipoRed: string;
 
-  // Datos binarios
   ipBinario: string;
   mascaraBinario: string;
   redBinario: string;
@@ -30,7 +26,6 @@ export type resultRed = {
   hostMaximoBinario: string;
   broadcastBinario: string;
 
-  // Nuevos campos para la subred
   bitsRedes: number;
   bitsRedesDecimal: string;
   bitsRedesBinario: string;
@@ -38,20 +33,17 @@ export type resultRed = {
   nuevaMascaraDecimal: string;
   nuevaMascaraBinario: string;
 
-  // Nuevos campos adicionales para la subred
-  hostMinimoSubred?: string;  // Host mínimo de la subred (opcional)
-  hostMaximoSubred?: string;  // Host máximo de la subred (opcional)
-  broadcastSubred?: string;   // Broadcast de la subred (opcional)
-  totalHostsSubred?: number;  // Total de hosts en la subred (opcional)
+  hostMinimoSubred?: string; 
+  hostMaximoSubred?: string;  
+  broadcastSubred?: string;   
+  totalHostsSubred?: number;  
 
-  // Opcionales si es necesario para más información de la red o subred
-  nuevaRed?: string;  // Nueva red calculada después de aplicar la máscara (opcional)
-  nuevaSubred?: string; // Detalles adicionales sobre la subred (opcional)
+  nuevaRed?: string; 
+  nuevaSubred?: string; 
 
-  // Agregando los valores binarios de la subred
-  hostMinimoSubredBinario?: string;  // Binario del host mínimo de la subred
-  hostMaximoSubredBinario?: string;  // Binario del host máximo de la subred
-  broadcastSubredBinario?: string;   // Binario del broadcast de la subred
+  hostMinimoSubredBinario?: string; 
+  hostMaximoSubredBinario?: string; 
+  broadcastSubredBinario?: string;  
 };
 
 export type PropsR = {

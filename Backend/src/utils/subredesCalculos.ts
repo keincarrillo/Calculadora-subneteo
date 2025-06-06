@@ -18,12 +18,11 @@ export function calcularSubredes(
 
   const subredes: ResultadoSubneteo[] = [];
 
-  // Asegurándonos de que la IP base es calculada correctamente a partir de la IP proporcionada
   const baseRed = ip.cidrSubnet(`${ipBase}/${mascaraBitsOriginal}`).networkAddress;
-  let baseInt = ip.toLong(baseRed); // Usar la red base calculada
+  let baseInt = ip.toLong(baseRed);
 
   for (let i = 0; i < numSubredes; i++) {
-    const subredInt = baseInt + i * totalHostsPorSubred; // Incrementamos según el total de hosts por subred
+    const subredInt = baseInt + i * totalHostsPorSubred;
     const subredIp = ip.fromLong(subredInt);
 
     const resultado = calcularSubneteo(

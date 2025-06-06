@@ -47,12 +47,10 @@ export function calcularSubneteo(
   mascaraNuevaBits?: number
 ): ResultadoSubneteo {
   const mascaraFinalBits = mascaraNuevaBits ?? mascaraBits;
-  
-  // CALCULAR LA RED BASE CON LA MÁSCARA ORIGINAL (/24)
-  const mascaraDecimal = ip.fromPrefixLen(mascaraBits); // Máscara original
+
+  const mascaraDecimal = ip.fromPrefixLen(mascaraBits); 
   const nuevaMascaraDecimal = ip.fromPrefixLen(mascaraFinalBits);
 
-  // CALCULAR LA RED BASE CON LA MÁSCARA ORIGINAL
   const subnetInfo = ip.cidrSubnet(`${ipStr}/${mascaraBits}`);
 
   const bitsHostOriginal = BITS_IP - mascaraBits;
@@ -74,21 +72,13 @@ export function calcularSubneteo(
     bitsRedesBinario = binario;
   }
 
-  // Cálculo de los hosts
-  // Para la red base, los hosts serán los de la máscara original (/24)
-  const totalHostsBase = 2 ** bitsHostOriginal - 2; // Total de hosts para la red base (/24)
-  
-  // Para las subredes, los hosts serán calculados con la nueva máscara (/27)
-  const totalHostsSubred = 2 ** bitsHostSubred - 2; // Total de hosts para la subred (/27)
-
-  // CALCULO DEL BROADCAST: Para la red base, se utiliza la máscara original (/24)
-  const broadcastBase = ip.toLong(subnetInfo.networkAddress) + totalHostsBase + 1; // Última dirección de la red
-  const broadcastBaseIP = ip.fromLong(broadcastBase); // Convertimos a dirección IP
-
-  // CALCULO DEL BROADCAST PARA LA SUBRED: Para las subredes, se usa la nueva máscara (/27)
+  const totalHostsBase = 2 ** bitsHostOriginal - 2;
+  const totalHostsSubred = 2 ** bitsHostSubred - 2; 
+  const broadcastBase = ip.toLong(subnetInfo.networkAddress) + totalHostsBase + 1; 
+  const broadcastBaseIP = ip.fromLong(broadcastBase); 
   const newSubnetInfo = ip.cidrSubnet(`${ipStr}/${mascaraFinalBits}`);
-  const broadcastSubred = ip.toLong(newSubnetInfo.networkAddress) + totalHostsSubred + 1; // Última dirección de la subred
-  const broadcastSubredIP = ip.fromLong(broadcastSubred); // Convertimos a dirección IP
+  const broadcastSubred = ip.toLong(newSubnetInfo.networkAddress) + totalHostsSubred + 1; 
+  const broadcastSubredIP = ip.fromLong(broadcastSubred); 
 
   return {
     ip: ipStr,
@@ -107,20 +97,17 @@ export function calcularSubneteo(
     nuevaMascaraDecimal,
     nuevaMascaraBinario: toBinaryIP(nuevaMascaraDecimal),
     
-    // RED BASE CON LA MÁSCARA ORIGINAL
-    red: `${subnetInfo.networkAddress}/${mascaraBits}`,  // Red base siempre con /24
+    red: `${subnetInfo.networkAddress}/${mascaraBits}`, 
     
-    // Los hosts para la red base
     hostMinimo: subnetInfo.firstAddress,
     hostMaximo: subnetInfo.lastAddress,
-    broadcast: broadcastBaseIP, // El broadcast para la red base calculado correctamente
-    totalHosts: totalHostsBase, // Total de hosts con máscara original
+    broadcast: broadcastBaseIP, 
+    totalHosts: totalHostsBase, 
     
-    // Los hosts para la subred (con nueva máscara)
     hostMinimoSubred: newSubnetInfo.firstAddress,
     hostMaximoSubred: newSubnetInfo.lastAddress,
-    broadcastSubred: broadcastSubredIP, // El broadcast para la subred calculado correctamente
-    totalHostsSubred: totalHostsSubred, // Total de hosts con máscara nueva (/27)
+    broadcastSubred: broadcastSubredIP, 
+    totalHostsSubred: totalHostsSubred,
 
     clase: calcularClase(ipStr),
     tipoRed: esRedPrivada(ipStr),
