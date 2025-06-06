@@ -50,12 +50,12 @@ Para instalar las dependencias usa el siguiente comando en tu terminal de GitBas
 
 ```bash
 bun install
+bun run install:all
 ```
 
-Levanta el proyecto con los siguientes comandos en tu terminal de GitBash
+Levanta el proyecto usa el siguiente comando en tu terminal de GitBash
 
 ```bash
-bun run install:all
 bun run start:all
 ```
 
