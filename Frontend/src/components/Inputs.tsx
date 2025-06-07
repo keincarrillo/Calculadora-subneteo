@@ -36,7 +36,7 @@ const IPForm = ({ onResultado, onSubredes }: PropsI) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="max-w-full mx-auto mt-10 p-6 bg-white dark:bg-gray-950 dark:border-2 dark:border-aquamarine-600/40 rounded shadow flex items-end space-x-6 animate-fadeIn"
+      className="max-w-full mx-auto mt-2 p-6 bg-white dark:bg-gray-950 dark:border-2 dark:border-aquamarine-600/40 rounded shadow flex items-end space-x-6 animate-fadeIn"
     >
       <div className="flex flex-col w-40 animate-slideInUp">
         <label htmlFor="ip" className="font-semibold mb-2 text-center text-black dark:text-white">

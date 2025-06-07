@@ -1,13 +1,8 @@
-/* src/index.css */
-
-/* Importar Tailwind */
 @import "tailwindcss";
 @plugin "@midudev/tailwind-animations";
 
-/* Definir variantes para el tema oscuro */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Importar el tema personalizado con tus colores */
 @theme {
     --color-aquamarine-50: #e8fff9;
     --color-aquamarine-100: #c8ffee;
@@ -22,40 +17,34 @@
     --color-aquamarine-950: #003530;
 }
 
-/* Tema claro - Fondo y texto en colores claros por defecto */
 @layer base {
   body {
     font-family: Arial, sans-serif;
-    background-color: var(--color-aquamarine-50);  /* Fondo claro */
-    color: var(--color-aquamarine-900);  /* Texto oscuro */
+    background-color: var(--color-aquamarine-50);  
+    color: var(--color-aquamarine-900);  
     transition: background-color 0.3s ease, color 0.3s ease;
   }
 }
 
-/* Tema oscuro - Estilo oscuro al agregar la clase `dark` */
 @layer base {
   .dark {
-    background-color: var(--color-aquamarine-900); /* Fondo oscuro */
-    color: var(--color-aquamarine-50); /* Texto claro */
+    background-color: var(--color-aquamarine-900); 
+    color: var(--color-aquamarine-50);
   }
 
-  /* Personalización de algunos componentes */
   .dark .bg-blue-500 {
-    background-color: var(--color-aquamarine-400); /* Azul para el botón en modo oscuro */
+    background-color: var(--color-aquamarine-400); 
   }
 
   .dark .bg-gray-900 {
-    background-color: var(--color-aquamarine-800); /* Fondo gris oscuro para el cuerpo */
+    background-color: var(--color-aquamarine-800); 
   }
 
   .dark .text-white {
-    color: var(--color-aquamarine-50); /* Texto blanco en modo oscuro */
+    color: var(--color-aquamarine-50); 
   }
 }
 
-/* Aquí puedes agregar más personalizaciones específicas para otros elementos */
-
-/* Ejemplo de cómo personalizar otros colores del tema */
 @layer components {
   .dark .btn {
     background-color: var(--color-aquamarine-600);
@@ -67,3 +56,29 @@
     border: 1px solid var(--color-aquamarine-700);
   }
 }
+
+@layer utilities {
+  .scrollbar-custom {
+    scrollbar-width: thin; 
+    scrollbar-color: var(--color-aquamarine-500) var(--color-aquamarine-700);
+  }
+
+  .scrollbar-custom::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-track {
+    background: var(--color-aquamarine-800);
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-thumb {
+    background-color: var(--color-aquamarine-600);
+    border-radius: 4px;
+    border: 2px solid var(--color-aquamarine-800);
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-aquamarine-500);
+  }
+}
+

@@ -39,7 +39,7 @@ const ResultadosSubredes = ({ subredes }: PropsS) => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-4 border border-aquamarine-600 rounded-md bg-white dark:bg-gray-950 font-sans animate-pop flex flex-col min-h-[550px] mt-10">
+    <div className="max-w-3xl mx-auto p-4 border border-aquamarine-600 rounded-md bg-white dark:bg-gray-950 font-sans animate-pop flex flex-col min-h-[550px] mt-2">
       <h3 className={headerClass}>Resultados de las Subredes</h3>
 
       <input
@@ -52,7 +52,7 @@ const ResultadosSubredes = ({ subredes }: PropsS) => {
         className="mb-6 p-2 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-aquamarine-500/50 dark:bg-aquamarine-800 dark:border-aquamarine-700 dark:text-white"
       />
 
-      <div className="flex-grow space-y-3 overflow-auto">
+      <div className="space-y-3 overflow-auto max-h-[400px] pr-2 scrollbar-custom">
         {subredesPagina.map((datos, idx) => (
           <SubredItem key={inicio + idx} idx={inicio + idx} datos={datos} />
         ))}
