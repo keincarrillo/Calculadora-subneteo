@@ -1,5 +1,6 @@
 import consultarApi from "../services/api";
 import { useForm } from "react-hook-form";
+import { Label } from "./ui/Label";
 import type { FormData } from "../types/formValues";
 import type { PropsI } from "../types/resultRed";
 
@@ -39,9 +40,7 @@ const IPForm = ({ onResultado, onSubredes }: PropsI) => {
       className="max-w-full mx-auto mt-2 p-6 bg-white dark:bg-gray-950 dark:border-2 dark:border-aquamarine-600/40 rounded shadow flex items-end space-x-6 animate-fadeIn"
     >
       <div className="flex flex-col w-40 animate-slideInUp">
-        <label htmlFor="ip" className="font-semibold mb-2 text-center text-black dark:text-white">
-          Dirección IP
-        </label>
+        <Label htmlFor="ip">Dirección IP</Label>
         <input
           id="ip"
           {...register("ip", {
@@ -67,9 +66,7 @@ const IPForm = ({ onResultado, onSubredes }: PropsI) => {
       </div>
 
       <div className="flex flex-col w-40 animate-slideInUp delay-100">
-        <label htmlFor="mascara" className="font-semibold mb-2 text-center text-black dark:text-white">
-          Máscara (bits)
-        </label>
+        <Label htmlFor="mascara">Máscara (bits)</Label>
         <input
           id="mascara"
           type="number"
@@ -95,12 +92,7 @@ const IPForm = ({ onResultado, onSubredes }: PropsI) => {
       </div>
 
       <div className="flex flex-col w-40 animate-slideInUp delay-200">
-        <label
-          htmlFor="mascaraNueva"
-          className="font-semibold mb-2 text-center whitespace-normal text-black dark:text-white"
-        >
-          Máscara Nueva (bits)
-        </label>
+        <Label htmlFor="mascaraNueva">Máscara Nueva (bits)</Label>
         <input
           id="mascaraNueva"
           type="number"
