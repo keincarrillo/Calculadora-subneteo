@@ -1,6 +1,8 @@
 import consultarApi from "../services/api";
 import { useForm } from "react-hook-form";
 import { Label } from "./ui/Label";
+import { Button } from "./ui/Button";
+import { Input } from "./ui/Input";
 import type { FormData } from "../types/formValues";
 import type { PropsI } from "../types/resultRed";
 
@@ -41,8 +43,9 @@ const IPForm = ({ onResultado, onSubredes }: PropsI) => {
     >
       <div className="flex flex-col w-40 animate-slideInUp">
         <Label htmlFor="ip">Dirección IP</Label>
-        <input
+        <Input
           id="ip"
+          placeholder="Ej: 192.168.0.1"
           {...register("ip", {
             required: "IP es requerida",
             pattern: {
@@ -56,7 +59,6 @@ const IPForm = ({ onResultado, onSubredes }: PropsI) => {
               ? "border-red-500 ring-red-300 animate-shake"
               : "border-gray-300 ring-aquamarine-500/50 dark:bg-aquamarine-800 dark:border-aquamarine-700"
           }`}
-          placeholder="Ej: 192.168.0.1"
         />
         {errors.ip ? (
           <p className="text-red-600 text-xs mt-1 h-4">{errors.ip.message}</p>
@@ -67,9 +69,10 @@ const IPForm = ({ onResultado, onSubredes }: PropsI) => {
 
       <div className="flex flex-col w-40 animate-slideInUp delay-100">
         <Label htmlFor="mascara">Máscara (bits)</Label>
-        <input
+        <Input
           id="mascara"
           type="number"
+          placeholder="Ej: 24"
           {...register("mascara", {
             required: "Máscara es requerida",
             min: { value: 0, message: "Debe ser mínimo 0" },
@@ -80,7 +83,6 @@ const IPForm = ({ onResultado, onSubredes }: PropsI) => {
               ? "border-red-500 ring-red-300 animate-shake"
               : "border-gray-300 ring-aquamarine-500/50 dark:bg-aquamarine-800 dark:border-aquamarine-700"
           }`}
-          placeholder="Ej: 24"
         />
         {errors.mascara ? (
           <p className="text-red-600 text-xs mt-1 h-4">
@@ -93,9 +95,10 @@ const IPForm = ({ onResultado, onSubredes }: PropsI) => {
 
       <div className="flex flex-col w-40 animate-slideInUp delay-200">
         <Label htmlFor="mascaraNueva">Máscara Nueva (bits)</Label>
-        <input
+        <Input
           id="mascaraNueva"
           type="number"
+          placeholder="Opcional"
           {...register("mascaraNueva", {
             min: { value: 0, message: "Debe ser mínimo 0" },
             max: { value: 32, message: "Debe ser máximo 32" },
@@ -109,7 +112,6 @@ const IPForm = ({ onResultado, onSubredes }: PropsI) => {
               ? "border-red-500 ring-red-300 animate-shake"
               : "border-gray-300 ring-aquamarine-500/50 dark:bg-aquamarine-800 dark:border-aquamarine-700"
           }`}
-          placeholder="Opcional"
         />
         {errors.mascaraNueva ? (
           <p className="text-red-600 text-xs mt-1 h-4">
@@ -120,12 +122,7 @@ const IPForm = ({ onResultado, onSubredes }: PropsI) => {
         )}
       </div>
 
-      <button
-        type="submit"
-        className="bg-aquamarine-600 hover:bg-aquamarine-700 text-white font-bold px-6 rounded transition transform hover:scale-105 active:scale-95 animate-bounce h-10 self-end mb-5 dark:bg-aquamarine-600/40 dark:hover:bg-aquamarine-600/70"
-      >
-        Calcular
-      </button>
+      <Button type="submit">Calcular</Button>
     </form>
   );
 };
