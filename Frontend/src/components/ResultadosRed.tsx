@@ -3,8 +3,8 @@ import type { PropsR } from "../types/resultRed";
 const ResultadosRed = ({ datos }: PropsR) => {
   const headerClass = "text-center text-sm font-semibold mb-4";
   const rowClass =
-    "grid grid-cols-[10rem_1fr_1fr] gap-4 items-start text-xs py-1 sm:text-sm";
-  const labelClass = "font-semibold text-right";
+    "grid grid-cols-1 sm:grid-cols-[10rem_1fr_1fr] gap-4 items-start text-xs sm:text-sm py-1 text-left";
+  const labelClass = "font-semibold text-left";
   const valueClass = "text-left whitespace-nowrap";
   const monoClass = "font-mono text-left";
 
