@@ -3,7 +3,7 @@ import Inputs from "./components/Inputs";
 import ResultadosRed from "./components/ResultadosRed";
 import ResultadosSubredes from "./components/ResultadosSubredes";
 import type { resultRed } from "./types/resultRed";
-import { FaMoon, FaSun } from 'react-icons/fa'; // Iconos para el modo oscuro
+import { FaMoon, FaSun } from "react-icons/fa"; // Iconos para el modo oscuro
 
 const App = () => {
   const [resultado, setResultado] = useState<resultRed | null>(null);
@@ -24,7 +24,7 @@ const App = () => {
       return newMode;
     });
   };
-  
+
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add("dark");
@@ -35,21 +35,29 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-white text-black dark:bg-gray-950 dark:text-white">
-      <div className="flex justify-between items-center px-10 py-6">
-        <h1 className="text-3xl text-center">Calculadora Subneteo</h1>
+      <div className="flex justify-between items-center px-6 sm:px-10 py-6">
+        <h1 className="text-2xl sm:text-3xl text-center">
+          Calculadora Subneteo
+        </h1>
         <button
           onClick={toggleTheme}
           className="p-2 rounded-full text-gray-900 dark:text-white animate-bounce hover:animate-wiggle"
         >
           {isDarkMode ? (
-            <FaSun size={24} className="hover:animate-pop hover:cursor-pointer"/> 
+            <FaSun
+              size={24}
+              className="hover:animate-pop hover:cursor-pointer"
+            />
           ) : (
-            <FaMoon size={24} className="hover:animate-pop hover:cursor-pointer"/> 
+            <FaMoon
+              size={24}
+              className="hover:animate-pop hover:cursor-pointer"
+            />
           )}
         </button>
       </div>
 
-      <div className="flex justify-center gap-20 px-4">
+      <div className="flex flex-col sm:flex-row justify-center gap-6 sm:gap-20 px-4 sm:px-10">
         <div className="flex flex-col gap-6 max-w-2xl w-full items-center">
           <Inputs onResultado={setResultado} onSubredes={setSubredes} />
           {resultado && <ResultadosRed datos={resultado} />}

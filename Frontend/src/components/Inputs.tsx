@@ -36,10 +36,13 @@ const IPForm = ({ onResultado, onSubredes }: PropsI) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="max-w-full mx-auto mt-2 p-6 bg-white dark:bg-gray-950 dark:border-2 dark:border-aquamarine-600/40 rounded shadow flex items-end space-x-6 animate-fadeIn"
+      className="max-w-full mx-auto mt-2 p-6 bg-white dark:bg-gray-950 dark:border-2 dark:border-aquamarine-600/40 rounded shadow flex flex-col sm:flex-row items-start sm:items-end space-y-6 sm:space-y-0 sm:space-x-6 animate-fadeIn"
     >
-      <div className="flex flex-col w-40 animate-slideInUp">
-        <label htmlFor="ip" className="font-semibold mb-2 text-center text-black dark:text-white">
+      <div className="flex flex-col w-full sm:w-40 animate-slideInUp">
+        <label
+          htmlFor="ip"
+          className="font-semibold mb-2 text-center text-black dark:text-white"
+        >
           Dirección IP
         </label>
         <input
@@ -66,8 +69,11 @@ const IPForm = ({ onResultado, onSubredes }: PropsI) => {
         )}
       </div>
 
-      <div className="flex flex-col w-40 animate-slideInUp delay-100">
-        <label htmlFor="mascara" className="font-semibold mb-2 text-center text-black dark:text-white">
+      <div className="flex flex-col w-full sm:w-40 animate-slideInUp delay-100">
+        <label
+          htmlFor="mascara"
+          className="font-semibold mb-2 text-center text-black dark:text-white"
+        >
           Máscara (bits)
         </label>
         <input
@@ -94,7 +100,7 @@ const IPForm = ({ onResultado, onSubredes }: PropsI) => {
         )}
       </div>
 
-      <div className="flex flex-col w-40 animate-slideInUp delay-200">
+      <div className="flex flex-col w-full sm:w-40 animate-slideInUp delay-200">
         <label
           htmlFor="mascaraNueva"
           className="font-semibold mb-2 text-center whitespace-normal text-black dark:text-white"

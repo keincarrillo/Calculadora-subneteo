@@ -3,7 +3,8 @@ import type { PropsS } from "../types/resultRed";
 import { SubredItem } from "./SubredItem";
 
 const ResultadosSubredes = ({ subredes }: PropsS) => {
-  const headerClass = "text-center text-sm font-semibold mb-4 text-gray-900 dark:text-white";
+  const headerClass =
+    "text-center text-sm font-semibold mb-4 text-gray-900 dark:text-white";
 
   const [paginaActual, setPaginaActual] = useState(1);
   const [busqueda, setBusqueda] = useState("");
@@ -39,7 +40,7 @@ const ResultadosSubredes = ({ subredes }: PropsS) => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-4 border border-aquamarine-600 rounded-md bg-white dark:bg-gray-950 font-sans animate-pop flex flex-col min-h-[550px] mt-2">
+    <div className="max-w-full sm:max-w-3xl mx-auto p-4 border border-aquamarine-600 rounded-md bg-white dark:bg-gray-950 font-sans animate-pop flex flex-col min-h-[550px] mt-2">
       <h3 className={headerClass}>Resultados de las Subredes</h3>
 
       <input
@@ -66,7 +67,7 @@ const ResultadosSubredes = ({ subredes }: PropsS) => {
         >
           Anterior
         </button>
-        <span className="self-center text-gray-700 dark:text-white">
+        <span className="self-center text-gray-700 dark:text-white text-sm">
           Página {paginaActual} de {totalPaginas}
         </span>
         <button

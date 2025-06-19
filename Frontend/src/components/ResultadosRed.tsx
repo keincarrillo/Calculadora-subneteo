@@ -3,13 +3,13 @@ import type { PropsR } from "../types/resultRed";
 const ResultadosRed = ({ datos }: PropsR) => {
   const headerClass = "text-center text-sm font-semibold mb-4";
   const rowClass =
-    "grid grid-cols-[10rem_1fr_1fr] gap-4 items-start text-xs py-1";
+    "grid grid-cols-[10rem_1fr_1fr] gap-4 items-start text-xs py-1 sm:text-sm";
   const labelClass = "font-semibold text-right";
   const valueClass = "text-left whitespace-nowrap";
   const monoClass = "font-mono text-left";
 
   return (
-    <div className="max-w-2xl mx-auto p-4 border border-aquamarine-600 rounded-md bg-white text-gray-900 font-sans dark:bg-gray-950 dark:text-white dark:border-aquamarine-600/40 animate-pop">
+    <div className="max-w-full sm:max-w-2xl mx-auto p-4 border border-aquamarine-600 rounded-md bg-white text-gray-900 font-sans dark:bg-gray-950 dark:text-white dark:border-aquamarine-600/40 animate-pop">
       <h3 className={headerClass}>Resultados de la Red</h3>
 
       <div className={rowClass}>
