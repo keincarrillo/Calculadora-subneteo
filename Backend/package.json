@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "backend:start": "bun --watch src/api/api.ts"
+    "backend:start": "bun --watch src/api/index.ts"
   },
   "devDependencies": {
     "@types/bun": "latest",
