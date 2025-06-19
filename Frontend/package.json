@@ -10,6 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "deploy": "gh-pages -d dist"
+    
   },
   "dependencies": {
     "@midudev/tailwind-animations": "^0.2.0",
