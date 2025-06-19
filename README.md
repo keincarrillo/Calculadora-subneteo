@@ -60,3 +60,11 @@ bun run start:all
 ```
 
 El proyecto se va a levantar en el puerto: http://localhost:5173
+
+## Proyecto en produccion con Vercel & Render 🚀
+
+El proyecto puede verse directamente en produccion en la siguiente URL: https://calculadora-subneteo.vercel.app/
+
+⚠️ ¡Atención!
+
+Al hacer solicitud para hacer el calculo del subneteo puede llegar a tardar poco mas de un minuto, debido al deploy en Render con downtime
