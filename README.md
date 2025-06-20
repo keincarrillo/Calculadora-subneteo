@@ -1,62 +1,76 @@
-# calculadora-subneteo
+# Subnetting Calculator
 
-## Requisitos previos
+Welcome to the Subnetting Calculator! This tool will help you simplify network configuration tasks. Follow the steps below to get it up and running quickly.
 
-Asegúrate de tener **Bun** o **Node.js** instalado en tu sistema. Si no lo tienes, sigue estos pasos para instalarlo:
+---
 
-### Instalación de Bun
+## 🚀 Prerequisites
 
-Si no tienes **Bun** instalado, puedes instalarlo usando el siguiente comando:
+To run this project, you need to have **Bun** or **Node.js** installed on your system. Choose the option that best suits you.
 
-#### En macOS y Linux:
+---
 
-```bash
-curl -fsSL https://bun.sh/install | bash
-```
+### Bun Installation
 
-### En Windows
+If you don't have **Bun** yet, follow these instructions to install it:
 
-Puedes descargar el instalador aqui: https://bun.sh/ o usa el siguiente comando en PowerShell:
+#### On macOS and Linux:
 
 ```bash
-iwr https://bun.sh/install -useb | iex
+curl -fsSL [https://bun.sh/install](https://bun.sh/install) | bash
 ```
 
-Verifica la instalación con:
+#### On Windows
+
+You can download the installer directly from bun.sh or use the following command in PowerShell:
+
+```bash
+iwr [https://bun.sh/install](https://bun.sh/install) -useb | iex
+```
+
+✅ Verify your Bun installation:
 
 ```bash
 bun --version
 ```
 
-### Instalación con Node.js
+### Node.js Installation
 
-Si prefieres usar Node.js, asegúrate de tenerlo instalado con el siguiente comando:
+If you prefer to work with Node.js, make sure you have it installed.
 
 ```bash
 node --version
 ```
 
-Si Node.js no está instalado, puedes descargarlo desde aquí: https://nodejs.org/es
+If Node.js is not installed, you can download it from the official site: nodejs.org/es.
 
-Ejecuta el siguiente comando para instalar bun desde Node.js
+Once you have Node.js, run the following command to install Bun from npm (Node.js package manager):
 
 ```bash
 npm install -g bun
 ```
 
-### Levantar el Proyecto
+### ⚙️ Running the Project
 
-Para instalar las dependencias usa el siguiente comando en tu terminal de GitBash
+Once you have Bun or Node.js configured, you're ready to start the project!
+
+#### 📦 Installing Dependencies
+
+Open your terminal (preferably GitBash if you're on Windows) and run the following commands to install all necessary dependencies:
 
 ```bash
 bun install
 bun run install:all
 ```
 
-Levanta el proyecto usa el siguiente comando en tu terminal de GitBash
+#### ▶️ Starting the Application
+
+After installing the dependencies, start the project with this command in your GitBash terminal:
 
 ```bash
 bun run start:all
 ```
 
-El proyecto se va a levantar en el puerto: http://localhost:5173
+#### 🌐 Access the Calculator
+
+Once the project is running, you can access the calculator in your browser at the following address: http://localhost:5173
